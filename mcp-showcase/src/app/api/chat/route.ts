@@ -47,6 +47,25 @@ export async function POST(req: Request) {
           };
         },
       }),
+      getNpmPackage: tool({
+        description: 'Fetch details about an NPM package from the public registry.',
+        inputSchema: z.object({
+          packageName: z.string().describe('The name of the npm package (e.g., react, tailwindcss)'),
+        }),
+        execute: async ({ packageName }: { packageName: string }) => {
+          const res = await fetch(`https://registry.npmjs.org/${packageName}`);
+          if (!res.ok) return { error: 'Package not found in NPM registry' };
+          
+          const data = await res.json();
+          return {
+            name: data.name,
+            description: data.description,
+            version: data['dist-tags']?.latest || 'unknown',
+            license: data.license || 'N/A',
+            homepage: data.homepage,
+          };
+        },
+      }),
     },
   });
 

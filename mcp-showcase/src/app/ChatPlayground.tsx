@@ -77,6 +77,28 @@ export default function ChatPlayground() {
                                 </div>
                               </div>
                             </div>
+                        )
+                      ) : toolInvocation.toolName === 'getNpmPackage' ? (
+                        toolInvocation.result.error ? (
+                          <div className="text-red-500 text-sm">Error: {toolInvocation.result.error}</div>
+                        ) : (
+                          <div className="bg-white rounded-xl shadow-md border border-gray-200 p-5 w-full max-w-sm font-sans mt-2">
+                            <div className="flex justify-between items-start mb-3">
+                              <h3 className="font-bold text-lg text-gray-900 flex items-center gap-2">
+                                <span className="text-[#CB3837] text-2xl">📦</span> {toolInvocation.result.name}
+                              </h3>
+                              <span className="bg-blue-50 text-[#043873] border border-blue-100 text-xs font-mono px-2 py-1 rounded-full font-semibold">v{toolInvocation.result.version}</span>
+                            </div>
+                            <p className="text-sm text-gray-600 mb-5 leading-relaxed">{toolInvocation.result.description}</p>
+                            <div className="flex justify-between items-center text-xs font-medium border-t border-gray-100 pt-3">
+                              <span className="text-gray-500 bg-gray-50 px-2 py-1 rounded">License: {toolInvocation.result.license}</span>
+                              {toolInvocation.result.homepage && (
+                                <a href={toolInvocation.result.homepage} target="_blank" rel="noreferrer" className="text-[#4F9CF9] hover:text-blue-600 flex items-center gap-1 transition-colors">
+                                  Homepage <span className="text-lg leading-none">↗</span>
+                                </a>
+                              )}
+                            </div>
+                          </div>
                           )
                         ) : null}
                       </div>
@@ -91,7 +113,7 @@ export default function ChatPlayground() {
             <input
               className="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4F9CF9]"
               value={input}
-              placeholder="E.g., Fetch the github profile for torvalds"
+            placeholder="E.g., What is the latest version of tailwindcss on npm?"
               onChange={handleInputChange}
             />
             <button 
