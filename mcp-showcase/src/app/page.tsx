@@ -4,29 +4,38 @@ export default function McpShowcase() {
   return (
     <div className="min-h-screen bg-[#043873] font-sans text-white overflow-x-hidden scroll-smooth">
       {/* Navbar / Header */}
-      <header className="flex flex-row justify-between items-center py-4 px-8 lg:px-[220px] bg-[#043873]/95 backdrop-blur sticky top-0 z-50 border-b border-white/10 h-[92px]">
-        <div className="flex items-center gap-2">
-          {/* Simple CSS Logo */}
-          <div className="w-[37px] h-[29px] bg-white rounded-sm flex items-center justify-center">
+      <header className="flex flex-row justify-between items-center py-4 px-8 lg:px-[220px] bg-[#043873]/80 backdrop-blur-xl sticky top-0 z-50 border-b border-white/10 h-[92px] shadow-lg">
+        <div className="flex items-center gap-3 group cursor-pointer">
+          {/* Animated Logo */}
+          <div className="w-[37px] h-[29px] bg-gradient-to-br from-[#4F9CF9] to-[#FFE492] rounded-sm flex items-center justify-center group-hover:shadow-lg group-hover:shadow-[#4F9CF9]/50 transition-all">
             <div className="w-4 h-4 bg-[#043873] rounded-sm"></div>
           </div>
-          <span className="font-bold text-[28px] tracking-tight">MCP Hub</span>
+          <span className="font-bold text-[28px] tracking-tight bg-gradient-to-r from-white to-[#C4DEFD] bg-clip-text text-transparent">MCP Hub</span>
         </div>
         
         <nav className="hidden lg:flex flex-row items-center gap-8 text-[18px] font-medium">
-          <a href="#what-is-mcp" className="hover:text-[#FFE492] transition-colors">What is MCP?</a>
-          <a href="#skills" className="hover:text-[#FFE492] transition-colors">Skills</a>
-          <a href="/playground" className="hover:text-[#FFE492] transition-colors">Playground</a>
-          <a href="#ecosystem" className="hover:text-[#FFE492] transition-colors">Ecosystem</a>
+          <a href="#what-is-mcp" className="relative group hover:text-[#FFE492] transition-colors">
+            What is MCP?
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FFE492] group-hover:w-full transition-all duration-300"></span>
+          </a>
+          <a href="#three-primitives" className="relative group hover:text-[#FFE492] transition-colors">
+            Primitives
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FFE492] group-hover:w-full transition-all duration-300"></span>
+          </a>
+          <a href="#skills" className="relative group hover:text-[#FFE492] transition-colors">
+            Skills
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FFE492] group-hover:w-full transition-all duration-300"></span>
+          </a>
+          <a href="#ecosystem" className="relative group hover:text-[#FFE492] transition-colors">
+            Ecosystem
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FFE492] group-hover:w-full transition-all duration-300"></span>
+          </a>
         </nav>
 
         <div className="hidden md:flex flex-row items-center gap-6">
-          <button className="px-10 py-4 bg-[#FFE492] text-[#043873] rounded-lg font-medium text-[18px] hover:bg-yellow-300 transition-colors">
+          <button className="px-10 py-4 bg-gradient-to-r from-[#FFE492] to-[#ffd966] text-[#043873] rounded-lg font-medium text-[18px] hover:shadow-lg hover:shadow-[#FFE492]/50 transition-all hover:scale-105">
             Read Docs
           </button>
-          <a href="/playground" className="px-6 py-4 bg-[#4F9CF9] text-white rounded-lg font-medium text-[18px] hover:bg-blue-500 transition-colors flex items-center gap-2">
-            Try Assistant <span className="text-xl leading-none">→</span>
-          </a>
         </div>
       </header>
 
@@ -81,60 +90,61 @@ export default function McpShowcase() {
       </section>
 
       {/* Presentation: What is MCP? */}
-      <section id="what-is-mcp" className="py-20 lg:py-[140px] px-8 lg:px-[220px] bg-white text-[#212529]">
+      <section id="what-is-mcp" className="py-20 lg:py-[140px] px-8 lg:px-[220px] bg-gradient-to-b from-white to-gray-50 text-[#212529]">
         <ScrollAnimate className="max-w-[1200px] mx-auto flex flex-col gap-16">
           <div className="text-center space-y-6">
-            <h2 className="text-5xl md:text-[64px] font-bold tracking-tight text-[#043873]">What exactly is an MCP?</h2>
+            <h2 className="text-5xl md:text-[64px] font-bold tracking-tight bg-gradient-to-r from-[#043873] to-[#4F9CF9] bg-clip-text text-transparent">What exactly is an MCP?</h2>
             <p className="text-[20px] leading-[32px] text-gray-600 max-w-3xl mx-auto">
-              Historically, integrating an AI assistant with external tools meant writing custom API wrappers for every new model. The Model Context Protocol changes everything.
+              Before MCP, every AI model needed custom integration code. Today, MCPs enable plug-and-play connectivity with zero friction.
             </p>
           </div>
           
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-gray-50 p-8 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-14 h-14 bg-[#4F9CF9]/10 text-[#4F9CF9] rounded-lg flex items-center justify-center text-2xl mb-6">🔌</div>
-              <h3 className="text-2xl font-bold mb-4 text-[#043873]">Standardized</h3>
-              <p className="text-gray-600 leading-relaxed">It provides a universal API. Whether you are using Claude, Gemini, or a local model, they all use the exact same protocol to request data and trigger actions.</p>
+            <div className="group bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-2xl border-2 border-blue-200 shadow-lg hover:shadow-2xl hover:shadow-[#4F9CF9]/30 hover:-translate-y-2 transition-all duration-300">
+              <div className="w-16 h-16 bg-[#4F9CF9] text-white rounded-xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">🔌</div>
+              <h3 className="text-2xl font-bold mb-4 text-[#043873]">Standardized Interface</h3>
+              <p className="text-gray-700 leading-relaxed">One protocol for all models. Claude, Gemini, GPT, or local models—they all speak the same language. No more fragmented integrations.</p>
             </div>
-            <div className="bg-gray-50 p-8 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-14 h-14 bg-[#FFE492]/20 text-[#d4b127] rounded-lg flex items-center justify-center text-2xl mb-6">🛡️</div>
-              <h3 className="text-2xl font-bold mb-4 text-[#043873]">Secure & Local</h3>
-              <p className="text-gray-600 leading-relaxed">MCP operates on a client-server model where you control the server. You can grant AI agents secure access to your local file system or private databases without exposing your credentials.</p>
+            <div className="group bg-gradient-to-br from-yellow-50 to-yellow-100 p-8 rounded-2xl border-2 border-yellow-200 shadow-lg hover:shadow-2xl hover:shadow-[#FFE492]/30 hover:-translate-y-2 transition-all duration-300">
+              <div className="w-16 h-16 bg-[#FFE492] text-[#043873] rounded-xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">🛡️</div>
+              <h3 className="text-2xl font-bold mb-4 text-[#043873]">Secure & Local-First</h3>
+              <p className="text-gray-700 leading-relaxed">You control the server. Grant AI access to local files, private databases, and APIs without exposing credentials.</p>
             </div>
-            <div className="bg-gray-50 p-8 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-14 h-14 bg-green-100 text-green-600 rounded-lg flex items-center justify-center text-2xl mb-6">🚀</div>
-              <h3 className="text-2xl font-bold mb-4 text-[#043873]">What to Expect</h3>
-              <p className="text-gray-600 leading-relaxed">Expect seamless "plug-and-play" capabilities. If an MCP server exists for a platform (like Slack or Notion), your AI assistant can immediately read and write to it.</p>
+            <div className="group bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-2xl border-2 border-green-200 shadow-lg hover:shadow-2xl hover:shadow-green-300/30 hover:-translate-y-2 transition-all duration-300">
+              <div className="w-16 h-16 bg-[#0acf83] text-white rounded-xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">🚀</div>
+              <h3 className="text-2xl font-bold mb-4 text-[#043873]">Future-Proof</h3>
+              <p className="text-gray-700 leading-relaxed">Plug-and-play server ecosystem. New integrations? Just add an MCP. No code changes needed.</p>
             </div>
           </div>
         </ScrollAnimate>
       </section>
 
       {/* Presentation: Core Primitives */}
-      <section className="py-20 lg:py-[140px] px-8 lg:px-[220px] bg-[#032b59] text-white relative overflow-hidden">
+      <section id="three-primitives" className="py-20 lg:py-[140px] px-8 lg:px-[220px] bg-gradient-to-br from-[#032b59] to-[#043873] text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#4F9CF9]/10 rounded-full blur-3xl -mr-48"></div>
         <ScrollAnimate className="max-w-[1200px] mx-auto flex flex-col gap-16 relative z-10">
           <div className="text-center space-y-6">
-            <h2 className="text-5xl md:text-[64px] font-bold tracking-tight text-[#FFE492]">The Three Primitives</h2>
+            <h2 className="text-5xl md:text-[64px] font-bold tracking-tight bg-gradient-to-r from-[#FFE492] to-[#C4DEFD] bg-clip-text text-transparent">The Three Primitives</h2>
             <p className="text-[20px] leading-[32px] text-white/80 max-w-3xl mx-auto">
               MCP standardizes three fundamental ways for AI to interact with your world. It is not just about executing code.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
-             <div className="bg-white/5 border border-white/10 p-8 rounded-2xl backdrop-blur hover:bg-white/10 hover:-translate-y-2 transition-all duration-300">
-                <div className="text-5xl mb-6 drop-shadow-md">🛠️</div>
-                <h3 className="text-2xl font-bold mb-3 text-[#4F9CF9]">Tools (Skills)</h3>
-                <p className="text-white/80 leading-relaxed">Actionable functions the AI can execute. Tell the agent to "Deploy to Vercel", "Commit to GitHub", or "Restart Server".</p>
+             <div className="group bg-white/5 border border-white/20 p-8 rounded-2xl backdrop-blur hover:bg-white/15 hover:border-[#4F9CF9] hover:-translate-y-4 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-[#4F9CF9]/20">
+                <div className="text-5xl mb-6 drop-shadow-md group-hover:scale-110 group-hover:-rotate-6 transition-transform">🛠️</div>
+                <h3 className="text-2xl font-bold mb-3 text-[#FFE492]">Tools (Skills)</h3>
+                <p className="text-white/90 leading-relaxed">Actionable functions the AI can execute. Deploy to production, commit code, restart servers—all from natural language.</p>
              </div>
-             <div className="bg-white/5 border border-white/10 p-8 rounded-2xl backdrop-blur hover:bg-white/10 hover:-translate-y-2 transition-all duration-300">
-                <div className="text-5xl mb-6 drop-shadow-md">📄</div>
-                <h3 className="text-2xl font-bold mb-3 text-[#4F9CF9]">Resources</h3>
-                <p className="text-white/80 leading-relaxed">Expose live data to the AI. Let the agent read a local database schema, a live Figma file, or a REST API endpoint directly.</p>
+             <div className="group bg-white/5 border border-white/20 p-8 rounded-2xl backdrop-blur hover:bg-white/15 hover:border-[#FFE492] hover:-translate-y-4 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-[#FFE492]/20">
+                <div className="text-5xl mb-6 drop-shadow-md group-hover:scale-110 group-hover:rotate-6 transition-transform">📄</div>
+                <h3 className="text-2xl font-bold mb-3 text-[#FFE492]">Resources</h3>
+                <p className="text-white/90 leading-relaxed">Expose live data to the AI. Database schemas, API endpoints, design files—give agents real-time context.</p>
              </div>
-             <div className="bg-white/5 border border-white/10 p-8 rounded-2xl backdrop-blur hover:bg-white/10 hover:-translate-y-2 transition-all duration-300">
-                <div className="text-5xl mb-6 drop-shadow-md">📝</div>
-                <h3 className="text-2xl font-bold mb-3 text-[#4F9CF9]">Prompts</h3>
-                <p className="text-white/80 leading-relaxed">Pre-defined templates provided by the server to guide the AI on exactly how to use the available tools flawlessly.</p>
+             <div className="group bg-white/5 border border-white/20 p-8 rounded-2xl backdrop-blur hover:bg-white/15 hover:border-[#C4DEFD] hover:-translate-y-4 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-[#C4DEFD]/20">
+                <div className="text-5xl mb-6 drop-shadow-md group-hover:scale-110 group-hover:-rotate-6 transition-transform">📝</div>
+                <h3 className="text-2xl font-bold mb-3 text-[#FFE492]">Prompts</h3>
+                <p className="text-white/90 leading-relaxed">Pre-defined templates that guide AI on how to use skills perfectly. Reduce mistakes and increase reliability.</p>
              </div>
           </div>
         </ScrollAnimate>
@@ -210,30 +220,63 @@ export default function McpShowcase() {
       </section>
 
       {/* Presentation: Use Cases */}
-      <section className="py-20 lg:py-[140px] px-8 lg:px-[220px] bg-[#C4DEFD] text-[#043873]">
+      <section className="py-20 lg:py-[140px] px-8 lg:px-[220px] bg-gradient-to-br from-[#C4DEFD] via-[#dde9f8] to-[#f0f6ff] text-[#043873]">
         <ScrollAnimate className="max-w-[1200px] mx-auto flex flex-col gap-16">
           <div className="text-center space-y-6">
             <h2 className="text-5xl md:text-[64px] font-bold tracking-tight">Imagine What You Can Build</h2>
             <p className="text-[20px] leading-[32px] text-[#043873]/80 max-w-3xl mx-auto">
-              With MCPs, AI is no longer trapped in a text box. It becomes a capable agent natively embedded inside your workflow.
+              MCPs transform AI from a chatbot into a productive agent embedded in your workflow. Here are real-world scenarios:
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white/80 p-8 rounded-3xl shadow-lg border border-white hover:-translate-y-2 transition-transform duration-300">
-               <div className="text-6xl mb-6 drop-shadow-md animate-bounce">📊</div>
+            <div className="group bg-white/90 backdrop-blur p-10 rounded-3xl shadow-lg border border-white hover:shadow-2xl hover:shadow-blue-200 hover:-translate-y-3 transition-all duration-300">
+               <div className="text-6xl mb-6 drop-shadow-md group-hover:animate-bounce">📊</div>
                <h3 className="text-2xl font-bold mb-3 text-[#043873]">Database Architect</h3>
-               <p className="text-[#043873]/80 leading-relaxed">Connect a Postgres MCP. Ask your AI to analyze user retention, write the SQL query, execute it locally, and chart the results in your chat.</p>
+               <p className="text-[#043873]/80 leading-relaxed">Ask your AI agent to analyze user retention with a Postgres MCP. It writes the SQL, executes it securely, and charts results instantly.</p>
+               <div className="mt-4 pt-4 border-t border-gray-200">
+                <p className="text-sm font-mono text-[#4F9CF9]">→ SQL analysis, dashboards, migrations</p>
+               </div>
             </div>
-            <div className="bg-white/80 p-8 rounded-3xl shadow-lg border border-white hover:-translate-y-2 transition-transform duration-300">
-               <div className="text-6xl mb-6 drop-shadow-md animate-pulse">🚢</div>
+            <div className="group bg-white/90 backdrop-blur p-10 rounded-3xl shadow-lg border border-white hover:shadow-2xl hover:shadow-purple-200 hover:-translate-y-3 transition-all duration-300">
+               <div className="text-6xl mb-6 drop-shadow-md group-hover:animate-pulse">🚢</div>
                <h3 className="text-2xl font-bold mb-3 text-[#043873]">DevOps Auto-Pilot</h3>
-               <p className="text-[#043873]/80 leading-relaxed">Connect GitHub and Vercel MCPs. Tell your AI: "Rollback the latest commit on main and redeploy the production environment."</p>
+               <p className="text-[#043873]/80 leading-relaxed">Connect GitHub and Vercel MCPs. Tell your AI: "Roll back the latest commit and redeploy." It orchestrates the entire workflow.</p>
+               <div className="mt-4 pt-4 border-t border-gray-200">
+                <p className="text-sm font-mono text-[#4F9CF9]">→ CI/CD, deployments, rollbacks</p>
+               </div>
             </div>
-            <div className="bg-white/80 p-8 rounded-3xl shadow-lg border border-white hover:-translate-y-2 transition-transform duration-300">
-               <div className="text-6xl mb-6 drop-shadow-md hover:rotate-12 transition-transform">🎨</div>
+            <div className="group bg-white/90 backdrop-blur p-10 rounded-3xl shadow-lg border border-white hover:shadow-2xl hover:shadow-pink-200 hover:-translate-y-3 transition-all duration-300">
+               <div className="text-6xl mb-6 drop-shadow-md group-hover:hover:rotate-12 transition-transform">🎨</div>
                <h3 className="text-2xl font-bold mb-3 text-[#043873]">Design Engineer</h3>
-               <p className="text-[#043873]/80 leading-relaxed">Connect the Figma MCP. Let the AI safely read your team's design tokens and instantly scaffold pixel-perfect React components.</p>
+               <p className="text-[#043873]/80 leading-relaxed">Connect the Figma MCP. Let AI read design tokens and scaffold pixel-perfect React components automatically.</p>
+               <div className="mt-4 pt-4 border-t border-gray-200">
+                <p className="text-sm font-mono text-[#4F9CF9]">→ Component generation, design sync</p>
+               </div>
+            </div>
+            <div className="group bg-white/90 backdrop-blur p-10 rounded-3xl shadow-lg border border-white hover:shadow-2xl hover:shadow-green-200 hover:-translate-y-3 transition-all duration-300">
+               <div className="text-6xl mb-6 drop-shadow-md group-hover:scale-110 transition-transform">🔍</div>
+               <h3 className="text-2xl font-bold mb-3 text-[#043873]">Security Auditor</h3>
+               <p className="text-[#043873]/80 leading-relaxed">Use Brave Search MCP to research vulnerabilities. Combine with GitHub MCP to audit and patch dependencies automatically.</p>
+               <div className="mt-4 pt-4 border-t border-gray-200">
+                <p className="text-sm font-mono text-[#4F9CF9]">→ Vulnerability scanning, patches</p>
+               </div>
+            </div>
+            <div className="group bg-white/90 backdrop-blur p-10 rounded-3xl shadow-lg border border-white hover:shadow-2xl hover:shadow-orange-200 hover:-translate-y-3 transition-all duration-300">
+               <div className="text-6xl mb-6 drop-shadow-md group-hover:scale-110 transition-transform">📧</div>
+               <h3 className="text-2xl font-bold mb-3 text-[#043873]">Slack Notifier</h3>
+               <p className="text-[#043873]/80 leading-relaxed">Connect Slack MCP to send intelligent summaries, alerts, and updates to your team automatically based on events.</p>
+               <div className="mt-4 pt-4 border-t border-gray-200">
+                <p className="text-sm font-mono text-[#4F9CF9]">→ Notifications, team updates</p>
+               </div>
+            </div>
+            <div className="group bg-white/90 backdrop-blur p-10 rounded-3xl shadow-lg border border-white hover:shadow-2xl hover:shadow-indigo-200 hover:-translate-y-3 transition-all duration-300">
+               <div className="text-6xl mb-6 drop-shadow-md group-hover:scale-110 transition-transform">☁️</div>
+               <h3 className="text-2xl font-bold mb-3 text-[#043873]">Cloud Infrastructure</h3>
+               <p className="text-[#043873]/80 leading-relaxed">AWS S3 MCP for file management, Lambda for serverless functions—build entire infrastructure with natural language.</p>
+               <div className="mt-4 pt-4 border-t border-gray-200">
+                <p className="text-sm font-mono text-[#4F9CF9]">→ Cloud ops, infrastructure as code</p>
+               </div>
             </div>
           </div>
         </ScrollAnimate>
