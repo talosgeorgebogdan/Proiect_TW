@@ -1,6 +1,13 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import ScrollAnimate from '../ScrollAnimate';
+
+export const metadata: Metadata = {
+  title: 'MCPs Used | MCP Hub',
+  description:
+    'Project-specific overview of the MCP servers used to build the site and how they improved the workflow.',
+};
 
 const mcpCards = [
   {
@@ -164,10 +171,12 @@ export default function McpsUsedPage() {
 
         <nav className="hidden lg:flex flex-row items-center gap-8 text-[18px] font-medium">
           <Link href="/" className="relative group hover:text-[#FFE492] transition-colors">
-            General Intro
+            Overview
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FFE492] group-hover:w-full transition-all duration-300"></span>
           </Link>
-          <span className="text-[#FFE492]">MCPs Used</span>
+          <span className="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-4 py-2 text-[#FFE492]">
+            MCPs Used
+          </span>
           <Link href="/skills-used" className="relative group hover:text-[#FFE492] transition-colors">
             Skills Used
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FFE492] group-hover:w-full transition-all duration-300"></span>
@@ -175,6 +184,12 @@ export default function McpsUsedPage() {
         </nav>
 
         <div className="hidden md:flex flex-row items-center gap-4">
+          <Link
+            href="/"
+            className="px-5 py-3 rounded-lg border border-white/15 text-[16px] font-medium text-white/90 hover:bg-white/10 transition-colors"
+          >
+            Overview
+          </Link>
           <Link
             href="/skills-used"
             className="px-5 py-3 rounded-lg border border-white/15 text-[16px] font-medium text-white/90 hover:bg-white/10 transition-colors"
@@ -394,17 +409,31 @@ export default function McpsUsedPage() {
         </ScrollAnimate>
       </section>
 
-      <footer className="bg-[#032b59] text-white py-12 px-8 lg:px-[220px] border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
-        <div className="flex items-center gap-2">
-          <div className="w-[30px] h-[24px] bg-white rounded-sm flex items-center justify-center">
-            <div className="w-3 h-3 bg-[#043873] rounded-sm"></div>
+      <footer className="bg-[#032b59] text-white py-12 px-8 lg:px-[220px] border-t border-white/10 flex flex-col gap-8">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-2">
+            <div className="w-[30px] h-[24px] bg-white rounded-sm flex items-center justify-center">
+              <div className="w-3 h-3 bg-[#043873] rounded-sm"></div>
+            </div>
+            <span className="font-bold text-xl tracking-tight">MCP Hub</span>
           </div>
-          <span className="font-bold text-xl tracking-tight">MCP Hub</span>
+          <p className="text-sm text-white/60 text-center md:text-left">
+            A presentation site about MCPs, skills, and AI-assisted development workflows.
+          </p>
         </div>
-        <p className="text-sm text-white/60 text-center md:text-left">
-          A presentation site about MCPs, skills, and AI-assisted development workflows.
-        </p>
-        <div className="flex gap-4">
+
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 border-t border-white/10 pt-6">
+          <div className="flex flex-wrap items-center justify-center gap-5 text-sm text-white/80">
+            <Link href="/" className="hover:text-[#FFE492] transition-colors">
+              Overview
+            </Link>
+            <Link href="/mcps-used" className="font-medium text-[#FFE492]">
+              MCPs Used
+            </Link>
+            <Link href="/skills-used" className="hover:text-[#FFE492] transition-colors">
+              Skills Used
+            </Link>
+          </div>
           <Link href="/skills-used" className="hover:text-[#FFE492] transition-colors font-medium">
             Continue to Skills
           </Link>

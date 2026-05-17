@@ -1,6 +1,13 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import ScrollAnimate from './ScrollAnimate';
+
+export const metadata: Metadata = {
+  title: 'Overview | MCP Hub',
+  description:
+    'General introduction to Model Context Protocol servers, skills, and AI-powered development workflows.',
+};
 
 const skillCards = [
   {
@@ -247,6 +254,9 @@ export default function McpShowcase() {
         </Link>
 
         <nav className="hidden lg:flex flex-row items-center gap-8 text-[18px] font-medium">
+          <span className="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-4 py-2 text-[#FFE492]">
+            Overview
+          </span>
           <a href="#what-is-mcp" className="relative group hover:text-[#FFE492] transition-colors">
             What is MCP?
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FFE492] group-hover:w-full transition-all duration-300"></span>
@@ -282,6 +292,12 @@ export default function McpShowcase() {
           >
             Skills Used
           </Link>
+          <a
+            href="#what-is-mcp"
+            className="px-5 py-3 rounded-lg bg-gradient-to-r from-[#FFE492] to-[#ffd966] text-[16px] font-medium text-[#043873] hover:shadow-lg hover:shadow-[#FFE492]/40 transition-all"
+          >
+            Start Here
+          </a>
         </div>
       </header>
 
@@ -712,9 +728,12 @@ export default function McpShowcase() {
             <p className="text-[18px] leading-[30px] text-white/90 mb-4">
               The Model Context Protocol (MCP) is natively supported in modern AI IDEs like Cursor, Windsurf, and VS Code. Securely connect your local context, databases, and external APIs directly to your AI workflow.
             </p>
-            <button className="px-8 py-4 bg-[#4F9CF9] text-white rounded-lg font-medium text-[18px] hover:bg-blue-500 transition-colors flex items-center gap-2">
-              View Documentation <span className="text-xl leading-none">→</span>
-            </button>
+            <Link
+              href="/mcps-used"
+              className="px-8 py-4 bg-[#4F9CF9] text-white rounded-lg font-medium text-[18px] hover:bg-blue-500 transition-colors flex items-center gap-2"
+            >
+              See The MCP Stack <span className="text-xl leading-none">→</span>
+            </Link>
           </div>
 
           <div className="flex-1 w-full xl:w-[686px] h-[479px] bg-[#C4DEFD] rounded-lg shadow-xl relative overflow-hidden flex items-center justify-center border-4 border-[#C4DEFD]/50">
@@ -739,17 +758,31 @@ export default function McpShowcase() {
         </ScrollAnimate>
       </section>
 
-      <footer className="bg-[#032b59] text-white py-12 px-8 lg:px-[220px] border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
-        <div className="flex items-center gap-2">
-          <div className="w-[30px] h-[24px] bg-white rounded-sm flex items-center justify-center">
-            <div className="w-3 h-3 bg-[#043873] rounded-sm"></div>
+      <footer className="bg-[#032b59] text-white py-12 px-8 lg:px-[220px] border-t border-white/10 flex flex-col gap-8">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-2">
+            <div className="w-[30px] h-[24px] bg-white rounded-sm flex items-center justify-center">
+              <div className="w-3 h-3 bg-[#043873] rounded-sm"></div>
+            </div>
+            <span className="font-bold text-xl tracking-tight">MCP Hub</span>
           </div>
-          <span className="font-bold text-xl tracking-tight">MCP Hub</span>
+          <p className="text-sm text-white/60 text-center md:text-left">
+            Built for university presentation purposes to showcase the future of AI tools and MCPs.
+          </p>
         </div>
-        <p className="text-sm text-white/60 text-center md:text-left">
-          Built for university presentation purposes to showcase the future of AI tools and MCPs.
-        </p>
-        <div className="flex gap-4">
+
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 border-t border-white/10 pt-6">
+          <div className="flex flex-wrap items-center justify-center gap-5 text-sm text-white/80">
+            <Link href="/" className="font-medium text-[#FFE492]">
+              Overview
+            </Link>
+            <Link href="/mcps-used" className="hover:text-[#FFE492] transition-colors">
+              MCPs Used
+            </Link>
+            <Link href="/skills-used" className="hover:text-[#FFE492] transition-colors">
+              Skills Used
+            </Link>
+          </div>
           <a href="#" className="hover:text-[#FFE492] transition-colors font-medium">
             Back to Top
           </a>
