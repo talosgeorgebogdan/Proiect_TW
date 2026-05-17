@@ -2,26 +2,152 @@ import Link from 'next/link';
 
 import ScrollAnimate from '../ScrollAnimate';
 
-const placeholders = [
+const mcpCards = [
   {
-    badge: '01',
-    title: 'Overview',
-    description:
-      'A quick explanation of which MCPs were connected in this project and why they mattered during development.',
+    code: 'DC',
+    name: 'Desktop Commander',
+    accent: '#4F9CF9',
+    icon: 'terminal',
+    summary:
+      'This was the local workspace bridge. It let the assistant inspect files, read project structure, manage small edits, and understand what already existed in the repo before changing anything.',
+    whatItDoes:
+      'Provides local filesystem access and command execution so the assistant can work directly with the project instead of guessing from chat context alone.',
+    howWeUsedIt:
+      'We used it to inspect the repo, read key files like `page.tsx`, `layout.tsx`, and project instructions, check git status, and manage project housekeeping such as the new `.gitignore`.',
+    whyItHelped:
+      'It turned the assistant from a generic explainer into a real pair-programming collaborator with awareness of the current codebase.',
+    role: 'Core build workflow',
   },
   {
-    badge: '02',
-    title: 'Per-MCP Breakdown',
-    description:
-      'A section for each MCP with what it does, how we used it, and the concrete benefit it brought to the workflow.',
+    code: 'ND',
+    name: 'Next DevTools MCP',
+    accent: '#FFE492',
+    icon: 'spark',
+    summary:
+      'This was the runtime intelligence layer for the Next.js app. It let us confirm the dev server, check route health, and verify that new pages actually worked in the running application.',
+    whatItDoes:
+      'Connects the assistant to a running Next.js 16 development server so it can inspect routes, gather diagnostics, and validate runtime behavior.',
+    howWeUsedIt:
+      'We used it to confirm the app was running on `localhost:3000`, check `get_errors`, load the new `/mcps-used` and `/skills-used` routes, and verify that the browser-facing result matched the code changes.',
+    whyItHelped:
+      'It gave us confidence that the site was not only coded correctly, but also rendering correctly in the actual Next.js environment.',
+    role: 'Primary verification workflow',
   },
   {
-    badge: '03',
-    title: 'Live Examples',
-    description:
-      'A future space for screenshots, terminal snippets, or short demos showing the MCPs in action inside this project.',
+    code: 'CD',
+    name: 'Chrome DevTools MCP',
+    accent: '#C4DEFD',
+    icon: 'browser',
+    summary:
+      'This played a lighter but still useful role. It confirmed browser automation connectivity and helped prove that browser-side tooling was available for interactive inspection when needed.',
+    whatItDoes:
+      'Exposes a real browser context to the assistant for page inspection, screenshots, console access, and interactive UI verification.',
+    howWeUsedIt:
+      'In this project, we primarily used it to verify that the browser-side MCP pipeline was connected and responsive before leaning more heavily on Next-focused verification tools.',
+    whyItHelped:
+      'Even a small validation step matters, because once browser control is confirmed, richer visual and interaction testing becomes available for later iterations.',
+    role: 'Supportive verification layer',
   },
 ];
+
+const journey = [
+  {
+    step: '01',
+    title: 'Connect The Local Workspace',
+    description:
+      'We first needed direct awareness of the project files, instructions, and existing app structure.',
+  },
+  {
+    step: '02',
+    title: 'Connect The Next.js Runtime',
+    description:
+      'Once the dev server was running, we connected the assistant to the live application instead of trusting static code alone.',
+  },
+  {
+    step: '03',
+    title: 'Verify Browser Tooling',
+    description:
+      'We also confirmed browser automation support so the project could be tested beyond simple code edits.',
+  },
+];
+
+const impactCards = [
+  {
+    label: 'Context',
+    title: 'Less Guessing',
+    description:
+      'MCPs gave the assistant real project context instead of making it infer everything from partial prompts.',
+  },
+  {
+    label: 'Verification',
+    title: 'Faster Feedback',
+    description:
+      'We could check routes, runtime status, and browser behavior as soon as changes were made.',
+  },
+  {
+    label: 'Workflow',
+    title: 'More Trust',
+    description:
+      'Each MCP reduced the gap between a chat response and a grounded, verifiable development action.',
+  },
+];
+
+function McpIcon({
+  kind,
+  className = '',
+}: {
+  kind: 'terminal' | 'spark' | 'browser' | 'route' | 'shield' | 'stack';
+  className?: string;
+}) {
+  const base = `h-8 w-8 ${className}`;
+
+  switch (kind) {
+    case 'terminal':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={`${base} animate-pulse`}>
+          <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="1.8" />
+          <path d="M7 10l2.5 2L7 14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M12 14h5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+      );
+    case 'spark':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={`${base} animate-pulse`}>
+          <path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8L12 2z" fill="currentColor" />
+        </svg>
+      );
+    case 'browser':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={`${base} animate-bounce`}>
+          <rect x="3" y="4.5" width="18" height="15" rx="2" stroke="currentColor" strokeWidth="1.8" />
+          <path d="M3 8.5h18" stroke="currentColor" strokeWidth="1.8" />
+          <circle cx="6.5" cy="6.5" r="0.8" fill="currentColor" />
+          <circle cx="9.5" cy="6.5" r="0.8" fill="currentColor" />
+        </svg>
+      );
+    case 'route':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={`${base} animate-bounce`}>
+          <circle cx="6" cy="6" r="2" fill="currentColor" />
+          <circle cx="18" cy="18" r="2" fill="currentColor" />
+          <path d="M8 6h4a4 4 0 014 4v4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+      );
+    case 'shield':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={`${base} animate-pulse`}>
+          <path d="M12 3l7 3v5c0 4.5-2.9 8.5-7 10-4.1-1.5-7-5.5-7-10V6l7-3z" stroke="currentColor" strokeWidth="1.8" />
+          <path d="M9.5 12l1.7 1.7 3.3-3.7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    case 'stack':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={`${base} animate-pulse`}>
+          <path d="M12 4l8 4-8 4-8-4 8-4zM4 12l8 4 8-4M4 16l8 4 8-4" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+        </svg>
+      );
+  }
+}
 
 export default function McpsUsedPage() {
   return (
@@ -59,55 +185,182 @@ export default function McpsUsedPage() {
       </header>
 
       <section className="relative overflow-hidden px-8 py-20 lg:px-[220px] lg:py-[120px]">
-        <div className="absolute left-1/2 top-10 h-[380px] w-[380px] -translate-x-1/2 rounded-full bg-[#4F9CF9]/25 blur-[100px]"></div>
-        <ScrollAnimate className="relative z-10 max-w-[1200px] mx-auto flex flex-col gap-10">
+        <div className="absolute left-1/2 top-8 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-[#4F9CF9]/25 blur-[110px]"></div>
+        <ScrollAnimate className="relative z-10 mx-auto flex max-w-[1200px] flex-col gap-10">
           <div className="inline-flex w-fit items-center gap-3 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-[#C4DEFD] backdrop-blur">
             <span className="h-2.5 w-2.5 rounded-full bg-[#FFE492] animate-pulse"></span>
-            Project-specific MCP walkthrough
+            Real MCP stack used while building the project
           </div>
 
-          <div className="max-w-[760px] space-y-6">
+          <div className="max-w-[820px] space-y-6">
             <h1 className="text-5xl font-bold leading-tight tracking-tight text-white md:text-[64px]">
-              MCPs Used In This Project
+              The MCPs Behind The Build
             </h1>
             <p className="text-[18px] leading-[30px] text-white/90">
-              This page will document the MCP servers that helped us build the site, what each one unlocked, and how they changed the development workflow compared to using AI in isolation.
+              This page explains the Model Context Protocol servers we actually connected during development. Instead of talking about MCPs in the abstract, it shows how they gave the assistant local context, runtime awareness, and browser-side verification while building this site.
             </p>
           </div>
 
           <div className="grid gap-4 md:grid-cols-3">
             <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur">
-              <p className="text-xs uppercase tracking-[0.2em] text-[#C4DEFD]">Planned focus</p>
-              <p className="mt-2 text-lg font-semibold text-white">What each MCP does</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-[#C4DEFD]">Used for</p>
+              <p className="mt-2 text-lg font-semibold text-white">Reading and shaping the workspace</p>
             </div>
             <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur">
-              <p className="text-xs uppercase tracking-[0.2em] text-[#C4DEFD]">Planned focus</p>
-              <p className="mt-2 text-lg font-semibold text-white">How we used it here</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-[#C4DEFD]">Used for</p>
+              <p className="mt-2 text-lg font-semibold text-white">Checking the live Next.js app</p>
             </div>
             <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur">
-              <p className="text-xs uppercase tracking-[0.2em] text-[#C4DEFD]">Planned focus</p>
-              <p className="mt-2 text-lg font-semibold text-white">Why it actually helped</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-[#C4DEFD]">Used for</p>
+              <p className="mt-2 text-lg font-semibold text-white">Confirming browser tooling was available</p>
             </div>
           </div>
         </ScrollAnimate>
       </section>
 
       <section className="bg-white px-8 py-20 text-[#043873] lg:px-[220px] lg:py-[120px]">
-        <ScrollAnimate className="mx-auto max-w-[1200px] flex flex-col gap-8">
-          <div className="max-w-[720px] space-y-4">
-            <h2 className="text-4xl font-bold tracking-tight md:text-[56px]">Template Structure</h2>
+        <ScrollAnimate className="mx-auto flex max-w-[1200px] flex-col gap-10">
+          <div className="max-w-[760px] space-y-4">
+            <h2 className="text-4xl font-bold tracking-tight md:text-[56px]">How The Workflow Evolved</h2>
             <p className="text-[18px] leading-[30px] text-[#043873]/80">
-              We are keeping this first version intentionally light, so the page already exists in the final style and we can fill each section carefully in the next iteration.
+              The project did not start with design alone. It started by connecting the assistant to the right layers of context so every later design and code decision could be grounded in the real environment.
             </p>
           </div>
 
           <div className="grid gap-8 lg:grid-cols-3">
-            {placeholders.map((item) => (
+            {journey.map((item, index) => (
               <div
                 key={item.title}
                 className="group rounded-3xl border border-[#dbe8f7] bg-white/90 p-8 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
               >
-                <p className="mb-3 text-xs font-mono tracking-[0.2em] text-[#4F9CF9]">{item.badge}</p>
+                <div className="mb-6 flex items-center justify-between">
+                  <span className="text-xs font-mono tracking-[0.22em] text-[#4F9CF9]">{item.step}</span>
+                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#EAF4FF] text-[#4F9CF9]">
+                    <McpIcon
+                      kind={index === 0 ? 'terminal' : index === 1 ? 'route' : 'browser'}
+                      className="h-6 w-6"
+                    />
+                  </span>
+                </div>
+                <h3 className="mb-4 text-2xl font-bold text-[#043873]">{item.title}</h3>
+                <p className="leading-relaxed text-[#043873]/80">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </ScrollAnimate>
+      </section>
+
+      <section className="bg-[#043873] px-8 py-20 text-white lg:px-[220px] lg:py-[120px]">
+        <ScrollAnimate className="mx-auto flex max-w-[1200px] flex-col gap-12">
+          <div className="max-w-[800px] space-y-5">
+            <h2 className="text-5xl font-bold tracking-tight md:text-[64px]">MCP By MCP</h2>
+            <p className="text-[18px] leading-[30px] text-white/85">
+              Each MCP played a different role. Some were essential every step of the way, while others supported confidence and verification at key moments.
+            </p>
+          </div>
+
+          <div className="grid gap-8">
+            {mcpCards.map((item, index) => (
+              <div
+                key={item.name}
+                className="rounded-[32px] border border-white/10 bg-white/5 p-8 shadow-2xl backdrop-blur lg:p-10"
+              >
+                <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">
+                  <div className="space-y-7">
+                    <div className="flex flex-wrap items-center gap-4">
+                      <span
+                        className="flex h-16 w-16 items-center justify-center rounded-2xl shadow-lg"
+                        style={{ backgroundColor: item.accent, color: item.code === 'ND' ? '#043873' : '#043873' }}
+                      >
+                        <McpIcon
+                          kind={item.icon as 'terminal' | 'spark' | 'browser'}
+                          className={item.code === 'CD' ? 'text-[#043873]' : 'text-[#043873]'}
+                        />
+                      </span>
+                      <div>
+                        <p className="text-xs font-mono tracking-[0.22em] text-[#C4DEFD]">{item.code}</p>
+                        <h3 className="text-3xl font-bold text-white">{item.name}</h3>
+                      </div>
+                      <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-[#FFE492]">
+                        {item.role}
+                      </span>
+                    </div>
+
+                    <p className="max-w-[720px] text-[18px] leading-[30px] text-white/85">
+                      {item.summary}
+                    </p>
+
+                    <div className="grid gap-5 md:grid-cols-3">
+                      <div className="rounded-2xl border border-white/10 bg-[#032b59]/70 p-5">
+                        <p className="text-xs font-mono uppercase tracking-[0.18em] text-[#C4DEFD]">What it does</p>
+                        <p className="mt-3 leading-relaxed text-white/80">{item.whatItDoes}</p>
+                      </div>
+                      <div className="rounded-2xl border border-white/10 bg-[#032b59]/70 p-5">
+                        <p className="text-xs font-mono uppercase tracking-[0.18em] text-[#C4DEFD]">How we used it</p>
+                        <p className="mt-3 leading-relaxed text-white/80">{item.howWeUsedIt}</p>
+                      </div>
+                      <div className="rounded-2xl border border-white/10 bg-[#032b59]/70 p-5">
+                        <p className="text-xs font-mono uppercase tracking-[0.18em] text-[#C4DEFD]">Why it helped</p>
+                        <p className="mt-3 leading-relaxed text-white/80">{item.whyItHelped}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col gap-5 rounded-[28px] bg-gradient-to-br from-white/10 to-white/5 p-8">
+                    <div className="flex items-center justify-between">
+                      <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#C4DEFD]">Project usage snapshot</p>
+                      <span className="rounded-full bg-white/10 px-3 py-1 text-xs text-white/70">
+                        {index === 0 ? 'heavy use' : index === 1 ? 'frequent use' : 'light use'}
+                      </span>
+                    </div>
+
+                    <div className="rounded-2xl border border-white/10 bg-[#043873]/60 p-6">
+                      <div className="mb-4 flex items-center gap-3 text-[#FFE492]">
+                        <McpIcon kind="stack" className="h-5 w-5" />
+                        <span className="text-sm font-mono tracking-[0.18em] uppercase">Contribution</span>
+                      </div>
+                      <p className="text-[17px] leading-[30px] text-white/80">
+                        {index === 0
+                          ? 'Without this MCP, the assistant would not have been able to inspect the repo, understand local files, or work with the codebase in a grounded way.'
+                          : index === 1
+                          ? 'Without this MCP, we would have been validating the app much more blindly, with less visibility into route behavior and runtime status.'
+                          : 'Without this MCP, we would have had one less proof point that the browser-side toolchain was ready for richer visual testing.'}
+                      </p>
+                    </div>
+
+                    <div className="rounded-2xl border border-white/10 bg-[#043873]/60 p-6">
+                      <div className="mb-4 flex items-center gap-3 text-[#FFE492]">
+                        <McpIcon kind="shield" className="h-5 w-5" />
+                        <span className="text-sm font-mono tracking-[0.18em] uppercase">Why it matters in AI development</span>
+                      </div>
+                      <p className="text-[17px] leading-[30px] text-white/80">
+                        MCPs matter because they move the assistant closer to evidence. The more grounded the assistant is in the actual environment, the more trustworthy its suggestions become.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </ScrollAnimate>
+      </section>
+
+      <section className="bg-gradient-to-br from-[#C4DEFD] via-[#dde9f8] to-[#f0f6ff] px-8 py-20 text-[#043873] lg:px-[220px] lg:py-[120px]">
+        <ScrollAnimate className="mx-auto flex max-w-[1200px] flex-col gap-8">
+          <div className="max-w-[760px] space-y-4">
+            <h2 className="text-4xl font-bold tracking-tight md:text-[56px]">Why These MCPs Changed The Project</h2>
+            <p className="text-[18px] leading-[30px] text-[#043873]/80">
+              Together, these MCPs made the workflow feel less like prompting a distant chatbot and more like collaborating with an assistant that could actually inspect, verify, and respond to the real project.
+            </p>
+          </div>
+
+          <div className="grid gap-8 lg:grid-cols-3">
+            {impactCards.map((item) => (
+              <div
+                key={item.title}
+                className="group rounded-3xl border border-white bg-white/90 p-8 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+              >
+                <p className="mb-3 text-xs font-mono tracking-[0.2em] text-[#4F9CF9]">{item.label}</p>
                 <h3 className="mb-4 text-2xl font-bold text-[#043873]">{item.title}</h3>
                 <p className="leading-relaxed text-[#043873]/80">{item.description}</p>
               </div>
@@ -117,17 +370,26 @@ export default function McpsUsedPage() {
       </section>
 
       <section className="bg-[#FFE492] px-8 py-20 text-[#043873] lg:px-[220px] lg:py-[120px]">
-        <ScrollAnimate className="mx-auto max-w-[1200px] rounded-[32px] bg-white/70 p-10 shadow-xl backdrop-blur">
-          <div className="max-w-[720px] space-y-5">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#4F9CF9]">
-              Next iteration target
-            </p>
-            <h2 className="text-4xl font-bold tracking-tight md:text-[52px]">
-              Fill this page MCP by MCP
-            </h2>
-            <p className="text-[18px] leading-[30px] text-[#043873]/80">
-              The next pass should turn this into a proper case-study page for `desktop-commander`, `next-devtools`, and `chrome-devtools`, including how they were used during the making of this project.
-            </p>
+        <ScrollAnimate className="mx-auto max-w-[1200px] rounded-[32px] bg-white/75 p-10 shadow-xl backdrop-blur">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-[760px] space-y-4">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#4F9CF9]">
+                Next page
+              </p>
+              <h2 className="text-4xl font-bold tracking-tight md:text-[52px]">
+                Continue from MCPs to skills
+              </h2>
+              <p className="text-[18px] leading-[30px] text-[#043873]/80">
+                If MCPs are the connection layer, the next page shows the development skills that guided how the assistant used those connections while building this project.
+              </p>
+            </div>
+
+            <Link
+              href="/skills-used"
+              className="inline-flex items-center justify-center rounded-xl bg-[#043873] px-8 py-4 text-[18px] font-medium text-white transition-all hover:bg-[#032b59] hover:shadow-lg"
+            >
+              Open Skills Used
+            </Link>
           </div>
         </ScrollAnimate>
       </section>
