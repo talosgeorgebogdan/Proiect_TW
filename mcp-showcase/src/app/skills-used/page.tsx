@@ -2,26 +2,161 @@ import Link from 'next/link';
 
 import ScrollAnimate from '../ScrollAnimate';
 
-const placeholders = [
+const skillCards = [
   {
-    badge: '01',
-    title: 'Skill Intent',
-    description:
-      'A short explanation of why each skill was installed and what type of guidance it gave during development.',
+    code: 'NX',
+    name: 'vercel-nextjs',
+    accent: '#4F9CF9',
+    icon: 'layers',
+    summary:
+      'This skill acted like a Next.js specialist sitting beside the project. It reinforced App Router thinking, route structure awareness, and the habit of treating the running app as the real source of truth.',
+    intent:
+      'Designed to guide building, debugging, and architecting Next.js applications with stronger framework awareness.',
+    influence:
+      'It supported how the pages were approached structurally, especially around route creation, App Router conventions, and keeping the work aligned with a modern Next.js workflow.',
+    value:
+      'It reduced the risk of treating the app like generic React and kept the implementation grounded in how a Next.js site should actually evolve.',
+    role: 'Framework guidance',
   },
   {
-    badge: '02',
-    title: 'Real Influence',
-    description:
-      'A section for concrete examples showing how the skills affected architecture, UI decisions, verification, and code quality.',
+    code: 'RB',
+    name: 'vercel-react-best-practices',
+    accent: '#FFE492',
+    icon: 'check',
+    summary:
+      'This skill played a quieter quality role. It did not dictate the whole project, but it helped frame a review mindset around JSX structure, semantics, and cleaner component decisions.',
+    intent:
+      'Designed as a compact React review checklist focused on structure, hooks, accessibility, performance, and TypeScript patterns.',
+    influence:
+      'Its biggest contribution here was reinforcing cleaner TSX composition and making sure the presentation pages stayed readable, semantic, and not overly tangled.',
+    value:
+      'It helps the assistant pause and think like a reviewer instead of only thinking like a generator.',
+    role: 'Quality control',
   },
   {
-    badge: '03',
-    title: 'Project Reflection',
-    description:
-      'A closing section for discussing which skills were most helpful and where they fit in an AI-assisted workflow.',
+    code: 'VF',
+    name: 'vercel-verification',
+    accent: '#C4DEFD',
+    icon: 'pulse',
+    summary:
+      'This skill had a very practical effect because the project repeatedly depended on live verification. It encouraged checking the running app, not just trusting the edit.',
+    intent:
+      'Designed to verify the full story of a feature by looking at the browser, runtime, and real application state with evidence.',
+    influence:
+      'It aligned well with the way we used the Next.js runtime and browser tools to check routes, console output, and whether changes actually appeared in the app.',
+    value:
+      'It makes AI-assisted development safer by rewarding proof over assumption.',
+    role: 'Verification mindset',
+  },
+  {
+    code: 'FB',
+    name: 'frontend-app-builder',
+    accent: '#0acf83',
+    icon: 'spark',
+    summary:
+      'This was the strongest design-oriented skill for the site itself. It pushed toward an intentional visual direction rather than a generic or flat interface.',
+    intent:
+      'Designed to help create visually driven frontends with stronger composition, clearer art direction, and more thoughtful presentation choices.',
+    influence:
+      'It matched the landing-page-first nature of this project and supported decisions around section rhythm, card styling, emphasis, and presentation energy.',
+    value:
+      'It helps the assistant build pages that feel designed, not merely assembled.',
+    role: 'Design direction',
   },
 ];
+
+const timeline = [
+  {
+    step: '01',
+    title: 'Install Skills For Better Defaults',
+    description:
+      'Instead of relying only on base model behavior, we installed targeted skills so the assistant could work with stronger domain-specific instincts.',
+  },
+  {
+    step: '02',
+    title: 'Let Skills Shape Decisions',
+    description:
+      'The effect was not a visible plugin menu on the page, but a shift in how routing, design choices, and verification were approached during implementation.',
+  },
+  {
+    step: '03',
+    title: 'Use MCPs And Skills Together',
+    description:
+      'MCPs connected the assistant to real project context, while skills helped it behave more like a specialist once that context was available.',
+  },
+];
+
+const reflections = [
+  {
+    label: 'Behavior',
+    title: 'Stronger Defaults',
+    description:
+      'Skills quietly improved the baseline decision-making style of the assistant before any single command or edit happened.',
+  },
+  {
+    label: 'Design',
+    title: 'More Intentional UI',
+    description:
+      'Instead of drifting toward generic layouts, the workflow stayed focused on a presentational, high-contrast, polished site identity.',
+  },
+  {
+    label: 'Reliability',
+    title: 'Better Review Habits',
+    description:
+      'The project benefited from a more disciplined loop: build, inspect, verify, and refine instead of stopping after the first plausible output.',
+  },
+];
+
+function SkillIcon({
+  kind,
+  className = '',
+}: {
+  kind: 'layers' | 'check' | 'pulse' | 'spark' | 'link' | 'compass';
+  className?: string;
+}) {
+  const base = `h-8 w-8 ${className}`;
+
+  switch (kind) {
+    case 'layers':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={`${base} animate-pulse`}>
+          <path d="M12 4l8 4-8 4-8-4 8-4zM4 12l8 4 8-4M4 16l8 4 8-4" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+        </svg>
+      );
+    case 'check':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={`${base} animate-pulse`}>
+          <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.8" />
+          <path d="M8.5 12.2l2.4 2.3 4.7-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    case 'pulse':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={`${base} animate-bounce`}>
+          <path d="M3 12h4l2-4 3 8 2-4h7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    case 'spark':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={`${base} animate-pulse`}>
+          <path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8L12 2z" fill="currentColor" />
+        </svg>
+      );
+    case 'link':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={`${base} animate-bounce`}>
+          <path d="M10 14l4-4M8.5 16.5l-2 2a3 3 0 11-4.2-4.2l2-2M15.5 7.5l2-2a3 3 0 114.2 4.2l-2 2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+      );
+    case 'compass':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={`${base} animate-pulse`}>
+          <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.8" />
+          <path d="M14.8 9.2l-1.9 4.7-4.7 1.9 1.9-4.7 4.7-1.9z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+        </svg>
+      );
+  }
+}
 
 export default function SkillsUsedPage() {
   return (
@@ -59,55 +194,63 @@ export default function SkillsUsedPage() {
       </header>
 
       <section className="relative overflow-hidden px-8 py-20 lg:px-[220px] lg:py-[120px]">
-        <div className="absolute right-20 top-12 h-[360px] w-[360px] rounded-full bg-[#FFE492]/20 blur-[100px]"></div>
-        <ScrollAnimate className="relative z-10 max-w-[1200px] mx-auto flex flex-col gap-10">
+        <div className="absolute right-16 top-10 h-[380px] w-[380px] rounded-full bg-[#FFE492]/20 blur-[110px]"></div>
+        <ScrollAnimate className="relative z-10 mx-auto flex max-w-[1200px] flex-col gap-10">
           <div className="inline-flex w-fit items-center gap-3 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-[#C4DEFD] backdrop-blur">
             <span className="h-2.5 w-2.5 rounded-full bg-[#4F9CF9] animate-pulse"></span>
-            AI workflow skill showcase
+            Installed skills that shaped the development workflow
           </div>
 
-          <div className="max-w-[760px] space-y-6">
+          <div className="max-w-[820px] space-y-6">
             <h1 className="text-5xl font-bold leading-tight tracking-tight text-white md:text-[64px]">
-              Skills Used To Build The Project
+              The Skills Behind The Decisions
             </h1>
             <p className="text-[18px] leading-[30px] text-white/90">
-              This page will explain the local skills installed for Codex, how they shaped the development process, and what kinds of best-practice guidance they contributed while building the site.
+              Skills are not external services like MCPs. They are local instruction layers that help the assistant behave more like a specialist. In this project, they influenced how the site was structured, reviewed, verified, and visually refined.
             </p>
           </div>
 
           <div className="grid gap-4 md:grid-cols-3">
             <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur">
-              <p className="text-xs uppercase tracking-[0.2em] text-[#C4DEFD]">Planned focus</p>
-              <p className="mt-2 text-lg font-semibold text-white">Why the skill exists</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-[#C4DEFD]">Skills changed</p>
+              <p className="mt-2 text-lg font-semibold text-white">How the assistant approached the work</p>
             </div>
             <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur">
-              <p className="text-xs uppercase tracking-[0.2em] text-[#C4DEFD]">Planned focus</p>
-              <p className="mt-2 text-lg font-semibold text-white">How it influenced the work</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-[#C4DEFD]">Skills changed</p>
+              <p className="mt-2 text-lg font-semibold text-white">What good output looked like</p>
             </div>
             <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur">
-              <p className="text-xs uppercase tracking-[0.2em] text-[#C4DEFD]">Planned focus</p>
-              <p className="mt-2 text-lg font-semibold text-white">What was valuable about it</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-[#C4DEFD]">Skills changed</p>
+              <p className="mt-2 text-lg font-semibold text-white">How much we trusted the final result</p>
             </div>
           </div>
         </ScrollAnimate>
       </section>
 
       <section className="bg-white px-8 py-20 text-[#043873] lg:px-[220px] lg:py-[120px]">
-        <ScrollAnimate className="mx-auto max-w-[1200px] flex flex-col gap-8">
-          <div className="max-w-[720px] space-y-4">
-            <h2 className="text-4xl font-bold tracking-tight md:text-[56px]">Template Structure</h2>
+        <ScrollAnimate className="mx-auto flex max-w-[1200px] flex-col gap-10">
+          <div className="max-w-[760px] space-y-4">
+            <h2 className="text-4xl font-bold tracking-tight md:text-[56px]">How Skills Fit Into The Workflow</h2>
             <p className="text-[18px] leading-[30px] text-[#043873]/80">
-              The layout is ready, but the content is still intentionally open so we can complete the skills page carefully in the next pass instead of rushing it now.
+              The effect of a skill is subtle compared to an MCP. An MCP gives the assistant access to something real. A skill shapes how the assistant thinks once that access exists.
             </p>
           </div>
 
           <div className="grid gap-8 lg:grid-cols-3">
-            {placeholders.map((item) => (
+            {timeline.map((item, index) => (
               <div
                 key={item.title}
                 className="group rounded-3xl border border-[#dbe8f7] bg-white/90 p-8 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
               >
-                <p className="mb-3 text-xs font-mono tracking-[0.2em] text-[#4F9CF9]">{item.badge}</p>
+                <div className="mb-6 flex items-center justify-between">
+                  <span className="text-xs font-mono tracking-[0.22em] text-[#4F9CF9]">{item.step}</span>
+                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#EAF4FF] text-[#4F9CF9]">
+                    <SkillIcon
+                      kind={index === 0 ? 'compass' : index === 1 ? 'layers' : 'link'}
+                      className="h-6 w-6"
+                    />
+                  </span>
+                </div>
                 <h3 className="mb-4 text-2xl font-bold text-[#043873]">{item.title}</h3>
                 <p className="leading-relaxed text-[#043873]/80">{item.description}</p>
               </div>
@@ -116,18 +259,142 @@ export default function SkillsUsedPage() {
         </ScrollAnimate>
       </section>
 
-      <section className="bg-[#C4DEFD] px-8 py-20 text-[#043873] lg:px-[220px] lg:py-[120px]">
-        <ScrollAnimate className="mx-auto max-w-[1200px] rounded-[32px] bg-[#043873] p-10 text-white shadow-xl">
-          <div className="max-w-[720px] space-y-5">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#FFE492]">
-              Next iteration target
-            </p>
-            <h2 className="text-4xl font-bold tracking-tight md:text-[52px]">
-              Fill this page skill by skill
-            </h2>
+      <section className="bg-[#043873] px-8 py-20 text-white lg:px-[220px] lg:py-[120px]">
+        <ScrollAnimate className="mx-auto flex max-w-[1200px] flex-col gap-12">
+          <div className="max-w-[800px] space-y-5">
+            <h2 className="text-5xl font-bold tracking-tight md:text-[64px]">Skill By Skill</h2>
             <p className="text-[18px] leading-[30px] text-white/85">
-              The next pass should turn this into a clearer story around `vercel-nextjs`, `vercel-react-best-practices`, `vercel-verification`, and `frontend-app-builder`, with examples from the work we did on this site.
+              These were the local skills installed for the project. Each one contributed a different kind of guidance: framework awareness, review discipline, verification habits, or design direction.
             </p>
+          </div>
+
+          <div className="grid gap-8">
+            {skillCards.map((item) => (
+              <div
+                key={item.name}
+                className="rounded-[32px] border border-white/10 bg-white/5 p-8 shadow-2xl backdrop-blur lg:p-10"
+              >
+                <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">
+                  <div className="space-y-7">
+                    <div className="flex flex-wrap items-center gap-4">
+                      <span
+                        className="flex h-16 w-16 items-center justify-center rounded-2xl shadow-lg text-[#043873]"
+                        style={{ backgroundColor: item.accent }}
+                      >
+                        <SkillIcon
+                          kind={item.icon as 'layers' | 'check' | 'pulse' | 'spark'}
+                          className="text-[#043873]"
+                        />
+                      </span>
+                      <div>
+                        <p className="text-xs font-mono tracking-[0.22em] text-[#C4DEFD]">{item.code}</p>
+                        <h3 className="text-3xl font-bold text-white">{item.name}</h3>
+                      </div>
+                      <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-[#FFE492]">
+                        {item.role}
+                      </span>
+                    </div>
+
+                    <p className="max-w-[720px] text-[18px] leading-[30px] text-white/85">
+                      {item.summary}
+                    </p>
+
+                    <div className="grid gap-5 md:grid-cols-3">
+                      <div className="rounded-2xl border border-white/10 bg-[#032b59]/70 p-5">
+                        <p className="text-xs font-mono uppercase tracking-[0.18em] text-[#C4DEFD]">Intent</p>
+                        <p className="mt-3 leading-relaxed text-white/80">{item.intent}</p>
+                      </div>
+                      <div className="rounded-2xl border border-white/10 bg-[#032b59]/70 p-5">
+                        <p className="text-xs font-mono uppercase tracking-[0.18em] text-[#C4DEFD]">Influence here</p>
+                        <p className="mt-3 leading-relaxed text-white/80">{item.influence}</p>
+                      </div>
+                      <div className="rounded-2xl border border-white/10 bg-[#032b59]/70 p-5">
+                        <p className="text-xs font-mono uppercase tracking-[0.18em] text-[#C4DEFD]">Value</p>
+                        <p className="mt-3 leading-relaxed text-white/80">{item.value}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col gap-5 rounded-[28px] bg-gradient-to-br from-white/10 to-white/5 p-8">
+                    <div className="flex items-center justify-between">
+                      <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#C4DEFD]">How to think about it</p>
+                      <span className="rounded-full bg-white/10 px-3 py-1 text-xs text-white/70">
+                        local guidance
+                      </span>
+                    </div>
+
+                    <div className="rounded-2xl border border-white/10 bg-[#043873]/60 p-6">
+                      <div className="mb-4 flex items-center gap-3 text-[#FFE492]">
+                        <SkillIcon kind="compass" className="h-5 w-5" />
+                        <span className="text-sm font-mono tracking-[0.18em] uppercase">What makes skills different</span>
+                      </div>
+                      <p className="text-[17px] leading-[30px] text-white/80">
+                        This skill did not fetch data or control the app directly. Instead, it shaped the assistant&apos;s behavior so the work reflected better defaults for this kind of project.
+                      </p>
+                    </div>
+
+                    <div className="rounded-2xl border border-white/10 bg-[#043873]/60 p-6">
+                      <div className="mb-4 flex items-center gap-3 text-[#FFE492]">
+                        <SkillIcon kind="link" className="h-5 w-5" />
+                        <span className="text-sm font-mono tracking-[0.18em] uppercase">Why it mattered here</span>
+                      </div>
+                      <p className="text-[17px] leading-[30px] text-white/80">
+                        In this project, the best results came from combining live MCP context with skills that improved structure, review habits, and visual decision-making.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </ScrollAnimate>
+      </section>
+
+      <section className="bg-gradient-to-br from-[#C4DEFD] via-[#dde9f8] to-[#f0f6ff] px-8 py-20 text-[#043873] lg:px-[220px] lg:py-[120px]">
+        <ScrollAnimate className="mx-auto flex max-w-[1200px] flex-col gap-8">
+          <div className="max-w-[760px] space-y-4">
+            <h2 className="text-4xl font-bold tracking-tight md:text-[56px]">What Skills Added To The Project</h2>
+            <p className="text-[18px] leading-[30px] text-[#043873]/80">
+              The most important thing these skills added was not a flashy feature. It was a better development posture: more framework awareness, more thoughtful UI decisions, and more respect for verification.
+            </p>
+          </div>
+
+          <div className="grid gap-8 lg:grid-cols-3">
+            {reflections.map((item) => (
+              <div
+                key={item.title}
+                className="group rounded-3xl border border-white bg-white/90 p-8 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+              >
+                <p className="mb-3 text-xs font-mono tracking-[0.2em] text-[#4F9CF9]">{item.label}</p>
+                <h3 className="mb-4 text-2xl font-bold text-[#043873]">{item.title}</h3>
+                <p className="leading-relaxed text-[#043873]/80">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </ScrollAnimate>
+      </section>
+
+      <section className="bg-[#FFE492] px-8 py-20 text-[#043873] lg:px-[220px] lg:py-[120px]">
+        <ScrollAnimate className="mx-auto max-w-[1200px] rounded-[32px] bg-white/75 p-10 shadow-xl backdrop-blur">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-[760px] space-y-4">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#4F9CF9]">
+                Final perspective
+              </p>
+              <h2 className="text-4xl font-bold tracking-tight md:text-[52px]">
+                MCPs connected the assistant. Skills refined the assistant.
+              </h2>
+              <p className="text-[18px] leading-[30px] text-[#043873]/80">
+                That combination is the main lesson of this project: better AI development does not come only from access to tools, but also from giving the assistant better habits for how to use them.
+              </p>
+            </div>
+
+            <Link
+              href="/"
+              className="inline-flex items-center justify-center rounded-xl bg-[#043873] px-8 py-4 text-[18px] font-medium text-white transition-all hover:bg-[#032b59] hover:shadow-lg"
+            >
+              Back To Main Page
+            </Link>
           </div>
         </ScrollAnimate>
       </section>
@@ -143,8 +410,8 @@ export default function SkillsUsedPage() {
           A presentation site about MCPs, skills, and AI-assisted development workflows.
         </p>
         <div className="flex gap-4">
-          <Link href="/mcps-used" className="hover:text-[#FFE492] transition-colors font-medium">
-            Back to MCPs
+          <Link href="/" className="hover:text-[#FFE492] transition-colors font-medium">
+            Back to Main Page
           </Link>
         </div>
       </footer>
