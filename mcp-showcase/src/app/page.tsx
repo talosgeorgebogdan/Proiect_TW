@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import ScrollAnimate from './ScrollAnimate';
 
 const skillCards = [
@@ -235,14 +237,14 @@ export default function McpShowcase() {
   return (
     <div className="min-h-screen bg-[#043873] font-sans text-white overflow-x-hidden scroll-smooth">
       <header className="flex flex-row justify-between items-center py-4 px-8 lg:px-[220px] bg-[#043873]/80 backdrop-blur-xl sticky top-0 z-50 border-b border-white/10 h-[92px] shadow-lg">
-        <div className="flex items-center gap-3 group cursor-pointer">
+        <Link href="/" className="flex items-center gap-3 group cursor-pointer">
           <div className="w-[37px] h-[29px] bg-gradient-to-br from-[#4F9CF9] to-[#FFE492] rounded-sm flex items-center justify-center group-hover:shadow-lg group-hover:shadow-[#4F9CF9]/50 transition-all">
             <div className="w-4 h-4 bg-[#043873] rounded-sm"></div>
           </div>
           <span className="font-bold text-[28px] tracking-tight bg-gradient-to-r from-white to-[#C4DEFD] bg-clip-text text-transparent">
             MCP Hub
           </span>
-        </div>
+        </Link>
 
         <nav className="hidden lg:flex flex-row items-center gap-8 text-[18px] font-medium">
           <a href="#what-is-mcp" className="relative group hover:text-[#FFE492] transition-colors">
@@ -267,10 +269,19 @@ export default function McpShowcase() {
           </a>
         </nav>
 
-        <div className="hidden md:flex flex-row items-center gap-6">
-          <button className="px-10 py-4 bg-gradient-to-r from-[#FFE492] to-[#ffd966] text-[#043873] rounded-lg font-medium text-[18px] hover:shadow-lg hover:shadow-[#FFE492]/50 transition-all hover:scale-105">
-            Explore Concepts
-          </button>
+        <div className="hidden md:flex flex-row items-center gap-4">
+          <Link
+            href="/mcps-used"
+            className="px-5 py-3 rounded-lg border border-white/15 text-[16px] font-medium text-white/90 hover:bg-white/10 transition-colors"
+          >
+            MCPs Used
+          </Link>
+          <Link
+            href="/skills-used"
+            className="px-5 py-3 rounded-lg border border-white/15 text-[16px] font-medium text-white/90 hover:bg-white/10 transition-colors"
+          >
+            Skills Used
+          </Link>
         </div>
       </header>
 
