@@ -99,63 +99,6 @@ const impactCards = [
   },
 ];
 
-function McpIcon({
-  kind,
-  className = '',
-}: {
-  kind: 'terminal' | 'spark' | 'browser' | 'route' | 'shield' | 'stack';
-  className?: string;
-}) {
-  const base = `h-8 w-8 ${className}`;
-
-  switch (kind) {
-    case 'terminal':
-      return (
-        <svg viewBox="0 0 24 24" fill="none" className={`${base} animate-pulse`}>
-          <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="1.8" />
-          <path d="M7 10l2.5 2L7 14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M12 14h5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-        </svg>
-      );
-    case 'spark':
-      return (
-        <svg viewBox="0 0 24 24" fill="none" className={`${base} animate-pulse`}>
-          <path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8L12 2z" fill="currentColor" />
-        </svg>
-      );
-    case 'browser':
-      return (
-        <svg viewBox="0 0 24 24" fill="none" className={`${base} animate-bounce`}>
-          <rect x="3" y="4.5" width="18" height="15" rx="2" stroke="currentColor" strokeWidth="1.8" />
-          <path d="M3 8.5h18" stroke="currentColor" strokeWidth="1.8" />
-          <circle cx="6.5" cy="6.5" r="0.8" fill="currentColor" />
-          <circle cx="9.5" cy="6.5" r="0.8" fill="currentColor" />
-        </svg>
-      );
-    case 'route':
-      return (
-        <svg viewBox="0 0 24 24" fill="none" className={`${base} animate-bounce`}>
-          <circle cx="6" cy="6" r="2" fill="currentColor" />
-          <circle cx="18" cy="18" r="2" fill="currentColor" />
-          <path d="M8 6h4a4 4 0 014 4v4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-        </svg>
-      );
-    case 'shield':
-      return (
-        <svg viewBox="0 0 24 24" fill="none" className={`${base} animate-pulse`}>
-          <path d="M12 3l7 3v5c0 4.5-2.9 8.5-7 10-4.1-1.5-7-5.5-7-10V6l7-3z" stroke="currentColor" strokeWidth="1.8" />
-          <path d="M9.5 12l1.7 1.7 3.3-3.7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      );
-    case 'stack':
-      return (
-        <svg viewBox="0 0 24 24" fill="none" className={`${base} animate-pulse`}>
-          <path d="M12 4l8 4-8 4-8-4 8-4zM4 12l8 4 8-4M4 16l8 4 8-4" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
-        </svg>
-      );
-  }
-}
-
 export default function McpsUsedPage() {
   return (
     <div className="min-h-screen bg-[#043873] font-sans text-white overflow-x-hidden">
@@ -250,11 +193,8 @@ export default function McpsUsedPage() {
               >
                 <div className="mb-6 flex items-center justify-between">
                   <span className="text-xs font-mono tracking-[0.22em] text-[#4F9CF9]">{item.step}</span>
-                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#EAF4FF] text-[#4F9CF9]">
-                    <McpIcon
-                      kind={index === 0 ? 'terminal' : index === 1 ? 'route' : 'browser'}
-                      className="h-6 w-6"
-                    />
+                  <span className="flex h-16 w-16 items-center justify-center rounded-3xl bg-[#EAF4FF] text-4xl shadow-lg ring-1 ring-[#d7e8ff] group-hover:scale-110 group-hover:-rotate-6 transition-all duration-300">
+                    {index === 0 ? '🗂️' : index === 1 ? '⚙️' : '🌐'}
                   </span>
                 </div>
                 <h3 className="mb-4 text-2xl font-bold text-[#043873]">{item.title}</h3>
@@ -284,13 +224,10 @@ export default function McpsUsedPage() {
                   <div className="space-y-7">
                     <div className="flex flex-wrap items-center gap-4">
                       <span
-                        className="flex h-16 w-16 items-center justify-center rounded-2xl shadow-lg"
+                        className="flex h-20 w-20 items-center justify-center rounded-[28px] shadow-2xl text-4xl ring-4 ring-white/10 group-hover:scale-110 group-hover:-rotate-6 transition-all duration-300"
                         style={{ backgroundColor: item.accent, color: item.code === 'ND' ? '#043873' : '#043873' }}
                       >
-                        <McpIcon
-                          kind={item.icon as 'terminal' | 'spark' | 'browser'}
-                          className={item.code === 'CD' ? 'text-[#043873]' : 'text-[#043873]'}
-                        />
+                        {item.code === 'DC' ? '🖥️' : item.code === 'ND' ? '⚡' : '🌐'}
                       </span>
                       <div>
                         <p className="text-xs font-mono tracking-[0.22em] text-[#C4DEFD]">{item.code}</p>
@@ -331,7 +268,7 @@ export default function McpsUsedPage() {
 
                     <div className="rounded-2xl border border-white/10 bg-[#043873]/60 p-6">
                       <div className="mb-4 flex items-center gap-3 text-[#FFE492]">
-                        <McpIcon kind="stack" className="h-5 w-5" />
+                        <span className="text-2xl drop-shadow-md">📌</span>
                         <span className="text-sm font-mono tracking-[0.18em] uppercase">Contribution</span>
                       </div>
                       <p className="text-[17px] leading-[30px] text-white/80">
@@ -345,7 +282,7 @@ export default function McpsUsedPage() {
 
                     <div className="rounded-2xl border border-white/10 bg-[#043873]/60 p-6">
                       <div className="mb-4 flex items-center gap-3 text-[#FFE492]">
-                        <McpIcon kind="shield" className="h-5 w-5" />
+                        <span className="text-2xl drop-shadow-md">🛡️</span>
                         <span className="text-sm font-mono tracking-[0.18em] uppercase">Why it matters in AI development</span>
                       </div>
                       <p className="text-[17px] leading-[30px] text-white/80">

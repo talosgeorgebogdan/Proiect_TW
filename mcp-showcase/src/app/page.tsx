@@ -411,8 +411,8 @@ export default function McpShowcase() {
 
           <div className="grid md:grid-cols-3 gap-8">
             <div className="group bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-2xl border-2 border-blue-200 shadow-lg hover:shadow-2xl hover:shadow-[#4F9CF9]/30 hover:-translate-y-2 transition-all duration-300">
-              <div className="w-16 h-16 bg-[#4F9CF9] text-white rounded-xl flex items-center justify-center text-lg font-bold mb-6 group-hover:scale-110 transition-transform">
-                <AnimatedIcon kind="plug" />
+              <div className="w-18 h-18 bg-[#4F9CF9] text-white rounded-2xl flex items-center justify-center text-4xl mb-6 shadow-xl drop-shadow-md group-hover:scale-110 group-hover:-rotate-6 transition-all duration-300">
+                🔌
               </div>
               <h3 className="text-2xl font-bold mb-4 text-[#043873]">Standardized Interface</h3>
               <p className="text-gray-700 leading-relaxed">
@@ -420,8 +420,8 @@ export default function McpShowcase() {
               </p>
             </div>
             <div className="group bg-gradient-to-br from-yellow-50 to-yellow-100 p-8 rounded-2xl border-2 border-yellow-200 shadow-lg hover:shadow-2xl hover:shadow-[#FFE492]/30 hover:-translate-y-2 transition-all duration-300">
-              <div className="w-16 h-16 bg-[#FFE492] text-[#043873] rounded-xl flex items-center justify-center text-lg font-bold mb-6 group-hover:scale-110 transition-transform">
-                <AnimatedIcon kind="shield" />
+              <div className="w-18 h-18 bg-[#FFE492] text-[#043873] rounded-2xl flex items-center justify-center text-4xl mb-6 shadow-xl drop-shadow-md group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                🛡️
               </div>
               <h3 className="text-2xl font-bold mb-4 text-[#043873]">Secure & Local-First</h3>
               <p className="text-gray-700 leading-relaxed">
@@ -429,8 +429,8 @@ export default function McpShowcase() {
               </p>
             </div>
             <div className="group bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-2xl border-2 border-green-200 shadow-lg hover:shadow-2xl hover:shadow-green-300/30 hover:-translate-y-2 transition-all duration-300">
-              <div className="w-16 h-16 bg-[#0acf83] text-white rounded-xl flex items-center justify-center text-lg font-bold mb-6 group-hover:scale-110 transition-transform">
-                <AnimatedIcon kind="spark" />
+              <div className="w-18 h-18 bg-[#0acf83] text-white rounded-2xl flex items-center justify-center text-4xl mb-6 shadow-xl drop-shadow-md group-hover:scale-110 group-hover:-rotate-6 transition-all duration-300">
+                🚀
               </div>
               <h3 className="text-2xl font-bold mb-4 text-[#043873]">Future-Proof</h3>
               <p className="text-gray-700 leading-relaxed">
@@ -492,27 +492,21 @@ export default function McpShowcase() {
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="group bg-white/5 border border-white/20 p-8 rounded-2xl backdrop-blur hover:bg-white/15 hover:border-[#4F9CF9] hover:-translate-y-4 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-[#4F9CF9]/20">
-              <div className="text-5xl mb-6 drop-shadow-md group-hover:scale-110 group-hover:-rotate-6 transition-transform">
-                <AnimatedIcon kind="tool" className="h-12 w-12" />
-              </div>
+              <div className="text-5xl mb-6 drop-shadow-md group-hover:scale-110 group-hover:-rotate-6 transition-transform">🛠️</div>
               <h3 className="text-2xl font-bold mb-3 text-[#FFE492]">Tools</h3>
               <p className="text-white/90 leading-relaxed">
                 Actionable functions the AI can execute. This is where assistants stop only describing work and start doing work.
               </p>
             </div>
             <div className="group bg-white/5 border border-white/20 p-8 rounded-2xl backdrop-blur hover:bg-white/15 hover:border-[#FFE492] hover:-translate-y-4 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-[#FFE492]/20">
-              <div className="text-5xl mb-6 drop-shadow-md group-hover:scale-110 group-hover:rotate-6 transition-transform">
-                <AnimatedIcon kind="resource" className="h-12 w-12" />
-              </div>
+              <div className="text-5xl mb-6 drop-shadow-md group-hover:scale-110 group-hover:rotate-6 transition-transform">📄</div>
               <h3 className="text-2xl font-bold mb-3 text-[#FFE492]">Resources</h3>
               <p className="text-white/90 leading-relaxed">
                 Expose live information to the AI. Instead of guessing, the assistant can inspect actual project state or external system context.
               </p>
             </div>
             <div className="group bg-white/5 border border-white/20 p-8 rounded-2xl backdrop-blur hover:bg-white/15 hover:border-[#C4DEFD] hover:-translate-y-4 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-[#C4DEFD]/20">
-              <div className="text-5xl mb-6 drop-shadow-md group-hover:scale-110 group-hover:-rotate-6 transition-transform">
-                <AnimatedIcon kind="prompt" className="h-12 w-12" />
-              </div>
+              <div className="text-5xl mb-6 drop-shadow-md group-hover:scale-110 group-hover:-rotate-6 transition-transform">📝</div>
               <h3 className="text-2xl font-bold mb-3 text-[#FFE492]">Prompts</h3>
               <p className="text-white/90 leading-relaxed">
                 Pre-defined instructions that teach the assistant how to frame a task, when to use a tool, and what a good answer should look like.
@@ -535,9 +529,7 @@ export default function McpShowcase() {
 
           <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-6">
             <div className="flex flex-col items-center gap-4 w-48 text-center group">
-              <div className="w-24 h-24 bg-[#043873] text-white rounded-full flex items-center justify-center text-base font-bold shadow-xl z-10 relative group-hover:scale-110 transition-transform">
-                <AnimatedIcon kind="brain" className="h-10 w-10" />
-              </div>
+              <div className="w-24 h-24 bg-[#043873] text-white rounded-full flex items-center justify-center text-4xl shadow-xl z-10 relative group-hover:scale-110 transition-transform">🧠</div>
               <h4 className="font-bold text-xl text-[#043873]">1. Reasoning</h4>
               <p className="text-sm text-gray-500">
                 The assistant decides a tool or resource is needed based on your goal.
@@ -549,9 +541,7 @@ export default function McpShowcase() {
             </div>
 
             <div className="flex flex-col items-center gap-4 w-48 text-center group">
-              <div className="w-24 h-24 bg-[#4F9CF9] text-white rounded-2xl rotate-3 flex items-center justify-center text-base font-bold shadow-xl z-10 relative group-hover:rotate-0 group-hover:scale-110 transition-all">
-                <AnimatedIcon kind="route" className="h-10 w-10" />
-              </div>
+              <div className="w-24 h-24 bg-[#4F9CF9] text-white rounded-2xl rotate-3 flex items-center justify-center text-4xl shadow-xl z-10 relative group-hover:rotate-0 group-hover:scale-110 transition-all">💻</div>
               <h4 className="font-bold text-xl text-[#043873]">2. MCP Client</h4>
               <p className="text-sm text-gray-500">
                 Your IDE or AI interface routes the request to the correct connected system.
@@ -563,9 +553,7 @@ export default function McpShowcase() {
             </div>
 
             <div className="flex flex-col items-center gap-4 w-48 text-center group">
-              <div className="w-24 h-24 bg-[#FFE492] text-[#043873] rounded-xl -rotate-3 flex items-center justify-center text-base font-bold shadow-xl z-10 relative group-hover:rotate-0 group-hover:scale-110 transition-all">
-                <AnimatedIcon kind="rpc" className="h-10 w-10" />
-              </div>
+              <div className="w-24 h-24 bg-[#FFE492] text-[#043873] rounded-xl -rotate-3 flex items-center justify-center text-4xl shadow-xl z-10 relative group-hover:rotate-0 group-hover:scale-110 transition-all">🔌</div>
               <h4 className="font-bold text-xl text-[#043873]">3. Transport</h4>
               <p className="text-sm text-gray-500">
                 Structured messages move across the connection, usually through JSON-RPC.
@@ -577,9 +565,7 @@ export default function McpShowcase() {
             </div>
 
             <div className="flex flex-col items-center gap-4 w-48 text-center group">
-              <div className="w-24 h-24 bg-[#0acf83] text-white rounded-full flex items-center justify-center text-base font-bold shadow-xl z-10 relative group-hover:scale-110 transition-transform">
-                <AnimatedIcon kind="act" className="h-10 w-10" />
-              </div>
+              <div className="w-24 h-24 bg-[#0acf83] text-white rounded-full flex items-center justify-center text-4xl shadow-xl z-10 relative group-hover:scale-110 transition-transform">📦</div>
               <h4 className="font-bold text-xl text-[#043873]">4. MCP Server</h4>
               <p className="text-sm text-gray-500">
                 The server executes the action or returns the requested context back to the assistant.
@@ -663,8 +649,18 @@ export default function McpShowcase() {
                 className="group bg-white/90 backdrop-blur p-10 rounded-3xl shadow-lg border border-white hover:shadow-2xl hover:-translate-y-3 transition-all duration-300"
               >
                 <div className="mb-6 flex items-center gap-4">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#EAF4FF] text-[#4F9CF9] shadow-inner">
-                    <AnimatedIcon kind={item.icon as 'database' | 'deploy' | 'figma' | 'shield' | 'message' | 'cloud'} className="h-7 w-7" />
+                  <div className="flex h-18 w-18 items-center justify-center rounded-3xl bg-white text-4xl shadow-xl ring-1 ring-[#d7e8ff] group-hover:scale-110 group-hover:-rotate-6 transition-all duration-300">
+                    {item.label === 'DB'
+                      ? '📊'
+                      : item.label === 'CI'
+                      ? '🚢'
+                      : item.label === 'UI'
+                      ? '🎨'
+                      : item.label === 'SEC'
+                      ? '🔍'
+                      : item.label === 'MSG'
+                      ? '📧'
+                      : '☁️'}
                   </div>
                   <div className="text-sm font-mono font-bold tracking-[0.2em] text-[#4F9CF9]">
                     {item.label}
@@ -692,25 +688,20 @@ export default function McpShowcase() {
                 key={name}
                 className="flex items-center gap-3 px-8 py-5 bg-gray-50 rounded-2xl border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition-all cursor-default"
               >
-                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white shadow-sm" style={{ color }}>
-                  <AnimatedIcon
-                    kind={
-                      code === 'VC'
-                        ? 'deploy'
-                        : code === 'GH'
-                        ? 'tool'
-                        : code === 'BR'
-                        ? 'spark'
-                        : code === 'FG'
-                        ? 'figma'
-                        : code === 'SL'
-                        ? 'message'
-                        : code === 'PG'
-                        ? 'database'
-                        : 'cloud'
-                    }
-                    className="h-5 w-5"
-                  />
+                <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-3xl shadow-lg ring-1 ring-gray-100 transition-all duration-300 group-hover:scale-110 group-hover:-rotate-6" style={{ color }}>
+                  {code === 'VC'
+                    ? '❖'
+                    : code === 'GH'
+                    ? '⚙️'
+                    : code === 'BR'
+                    ? '🦁'
+                    : code === 'FG'
+                    ? '🎨'
+                    : code === 'SL'
+                    ? '#'
+                    : code === 'PG'
+                    ? '🐘'
+                    : '🪣'}
                 </span>
                 {name}
               </div>

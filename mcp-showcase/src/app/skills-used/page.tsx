@@ -114,57 +114,6 @@ const reflections = [
   },
 ];
 
-function SkillIcon({
-  kind,
-  className = '',
-}: {
-  kind: 'layers' | 'check' | 'pulse' | 'spark' | 'link' | 'compass';
-  className?: string;
-}) {
-  const base = `h-8 w-8 ${className}`;
-
-  switch (kind) {
-    case 'layers':
-      return (
-        <svg viewBox="0 0 24 24" fill="none" className={`${base} animate-pulse`}>
-          <path d="M12 4l8 4-8 4-8-4 8-4zM4 12l8 4 8-4M4 16l8 4 8-4" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
-        </svg>
-      );
-    case 'check':
-      return (
-        <svg viewBox="0 0 24 24" fill="none" className={`${base} animate-pulse`}>
-          <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.8" />
-          <path d="M8.5 12.2l2.4 2.3 4.7-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      );
-    case 'pulse':
-      return (
-        <svg viewBox="0 0 24 24" fill="none" className={`${base} animate-bounce`}>
-          <path d="M3 12h4l2-4 3 8 2-4h7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      );
-    case 'spark':
-      return (
-        <svg viewBox="0 0 24 24" fill="none" className={`${base} animate-pulse`}>
-          <path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8L12 2z" fill="currentColor" />
-        </svg>
-      );
-    case 'link':
-      return (
-        <svg viewBox="0 0 24 24" fill="none" className={`${base} animate-bounce`}>
-          <path d="M10 14l4-4M8.5 16.5l-2 2a3 3 0 11-4.2-4.2l2-2M15.5 7.5l2-2a3 3 0 114.2 4.2l-2 2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-        </svg>
-      );
-    case 'compass':
-      return (
-        <svg viewBox="0 0 24 24" fill="none" className={`${base} animate-pulse`}>
-          <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.8" />
-          <path d="M14.8 9.2l-1.9 4.7-4.7 1.9 1.9-4.7 4.7-1.9z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
-        </svg>
-      );
-  }
-}
-
 export default function SkillsUsedPage() {
   return (
     <div className="min-h-screen bg-[#043873] font-sans text-white overflow-x-hidden">
@@ -259,11 +208,8 @@ export default function SkillsUsedPage() {
               >
                 <div className="mb-6 flex items-center justify-between">
                   <span className="text-xs font-mono tracking-[0.22em] text-[#4F9CF9]">{item.step}</span>
-                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#EAF4FF] text-[#4F9CF9]">
-                    <SkillIcon
-                      kind={index === 0 ? 'compass' : index === 1 ? 'layers' : 'link'}
-                      className="h-6 w-6"
-                    />
+                  <span className="flex h-16 w-16 items-center justify-center rounded-3xl bg-[#EAF4FF] text-4xl shadow-lg ring-1 ring-[#d7e8ff] group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                    {index === 0 ? '🧭' : index === 1 ? '🧱' : '🔗'}
                   </span>
                 </div>
                 <h3 className="mb-4 text-2xl font-bold text-[#043873]">{item.title}</h3>
@@ -293,13 +239,18 @@ export default function SkillsUsedPage() {
                   <div className="space-y-7">
                     <div className="flex flex-wrap items-center gap-4">
                       <span
-                        className="flex h-16 w-16 items-center justify-center rounded-2xl shadow-lg text-[#043873]"
+                        className="flex h-20 w-20 items-center justify-center rounded-[28px] shadow-2xl text-[#043873] ring-4 ring-white/10 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300"
                         style={{ backgroundColor: item.accent }}
                       >
-                        <SkillIcon
-                          kind={item.icon as 'layers' | 'check' | 'pulse' | 'spark'}
-                          className="text-[#043873]"
-                        />
+                        <span className="text-4xl drop-shadow-md">
+                          {item.code === 'NX'
+                            ? '▲'
+                            : item.code === 'RB'
+                            ? '✅'
+                            : item.code === 'VF'
+                            ? '📡'
+                            : '🎨'}
+                        </span>
                       </span>
                       <div>
                         <p className="text-xs font-mono tracking-[0.22em] text-[#C4DEFD]">{item.code}</p>
@@ -340,7 +291,7 @@ export default function SkillsUsedPage() {
 
                     <div className="rounded-2xl border border-white/10 bg-[#043873]/60 p-6">
                       <div className="mb-4 flex items-center gap-3 text-[#FFE492]">
-                        <SkillIcon kind="compass" className="h-5 w-5" />
+                        <span className="text-2xl drop-shadow-md">🧭</span>
                         <span className="text-sm font-mono tracking-[0.18em] uppercase">What makes skills different</span>
                       </div>
                       <p className="text-[17px] leading-[30px] text-white/80">
@@ -350,7 +301,7 @@ export default function SkillsUsedPage() {
 
                     <div className="rounded-2xl border border-white/10 bg-[#043873]/60 p-6">
                       <div className="mb-4 flex items-center gap-3 text-[#FFE492]">
-                        <SkillIcon kind="link" className="h-5 w-5" />
+                        <span className="text-2xl drop-shadow-md">✨</span>
                         <span className="text-sm font-mono tracking-[0.18em] uppercase">Why it mattered here</span>
                       </div>
                       <p className="text-[17px] leading-[30px] text-white/80">
