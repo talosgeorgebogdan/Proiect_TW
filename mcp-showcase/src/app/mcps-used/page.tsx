@@ -124,6 +124,10 @@ export default function McpsUsedPage() {
             Skills Used
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FFE492] group-hover:w-full transition-all duration-300"></span>
           </Link>
+          <Link href="/codex-in-practice" className="relative group hover:text-[#FFE492] transition-colors">
+            Codex In Practice
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FFE492] group-hover:w-full transition-all duration-300"></span>
+          </Link>
         </nav>
 
         <div className="hidden md:flex flex-row items-center gap-4">
@@ -369,6 +373,9 @@ export default function McpsUsedPage() {
             </Link>
             <Link href="/skills-used" className="hover:text-[#FFE492] transition-colors">
               Skills Used
+            </Link>
+            <Link href="/codex-in-practice" className="hover:text-[#FFE492] transition-colors">
+              Codex In Practice
             </Link>
           </div>
           <Link href="/skills-used" className="hover:text-[#FFE492] transition-colors font-medium">

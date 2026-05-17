@@ -139,6 +139,10 @@ export default function SkillsUsedPage() {
           <span className="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-4 py-2 text-[#FFE492]">
             Skills Used
           </span>
+          <Link href="/codex-in-practice" className="relative group hover:text-[#FFE492] transition-colors">
+            Codex In Practice
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FFE492] group-hover:w-full transition-all duration-300"></span>
+          </Link>
         </nav>
 
         <div className="hidden md:flex flex-row items-center gap-4">
@@ -388,6 +392,9 @@ export default function SkillsUsedPage() {
             </Link>
             <Link href="/skills-used" className="font-medium text-[#FFE492]">
               Skills Used
+            </Link>
+            <Link href="/codex-in-practice" className="hover:text-[#FFE492] transition-colors">
+              Codex In Practice
             </Link>
           </div>
           <Link href="/" className="hover:text-[#FFE492] transition-colors font-medium">

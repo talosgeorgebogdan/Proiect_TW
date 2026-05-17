@@ -292,6 +292,12 @@ export default function McpShowcase() {
           >
             Skills Used
           </Link>
+          <Link
+            href="/codex-in-practice"
+            className="px-5 py-3 rounded-lg border border-white/15 text-[16px] font-medium text-white/90 hover:bg-white/10 transition-colors"
+          >
+            Codex In Practice
+          </Link>
           <a
             href="#what-is-mcp"
             className="px-5 py-3 rounded-lg bg-gradient-to-r from-[#FFE492] to-[#ffd966] text-[16px] font-medium text-[#043873] hover:shadow-lg hover:shadow-[#FFE492]/40 transition-all"
@@ -772,6 +778,9 @@ export default function McpShowcase() {
             </Link>
             <Link href="/skills-used" className="hover:text-[#FFE492] transition-colors">
               Skills Used
+            </Link>
+            <Link href="/codex-in-practice" className="hover:text-[#FFE492] transition-colors">
+              Codex In Practice
             </Link>
           </div>
           <a href="#" className="hover:text-[#FFE492] transition-colors font-medium">
