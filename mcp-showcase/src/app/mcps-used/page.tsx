@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import ScrollAnimate from '../ScrollAnimate';
+import SiteHeader from '../SiteHeader';
 
 export const metadata: Metadata = {
   title: 'MCPs Used | MCP Hub',
@@ -102,49 +103,7 @@ const impactCards = [
 export default function McpsUsedPage() {
   return (
     <div className="min-h-screen bg-[#043873] font-sans text-white overflow-x-hidden">
-      <header className="flex flex-row justify-between items-center py-4 px-8 lg:px-[220px] bg-[#043873]/80 backdrop-blur-xl sticky top-0 z-50 border-b border-white/10 h-[92px] shadow-lg">
-        <Link href="/" className="flex items-center gap-3 group cursor-pointer">
-          <div className="w-[37px] h-[29px] bg-gradient-to-br from-[#4F9CF9] to-[#FFE492] rounded-sm flex items-center justify-center group-hover:shadow-lg group-hover:shadow-[#4F9CF9]/50 transition-all">
-            <div className="w-4 h-4 bg-[#043873] rounded-sm"></div>
-          </div>
-          <span className="font-bold text-[28px] tracking-tight bg-gradient-to-r from-white to-[#C4DEFD] bg-clip-text text-transparent">
-            MCP Hub
-          </span>
-        </Link>
-
-        <nav className="hidden lg:flex flex-row items-center gap-8 text-[18px] font-medium">
-          <Link href="/" className="relative group hover:text-[#FFE492] transition-colors">
-            Overview
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FFE492] group-hover:w-full transition-all duration-300"></span>
-          </Link>
-          <span className="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-4 py-2 text-[#FFE492]">
-            MCPs Used
-          </span>
-          <Link href="/skills-used" className="relative group hover:text-[#FFE492] transition-colors">
-            Skills Used
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FFE492] group-hover:w-full transition-all duration-300"></span>
-          </Link>
-          <Link href="/codex-in-practice" className="relative group hover:text-[#FFE492] transition-colors">
-            Codex In Practice
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FFE492] group-hover:w-full transition-all duration-300"></span>
-          </Link>
-        </nav>
-
-        <div className="hidden md:flex flex-row items-center gap-4">
-          <Link
-            href="/"
-            className="px-5 py-3 rounded-lg border border-white/15 text-[16px] font-medium text-white/90 hover:bg-white/10 transition-colors"
-          >
-            Overview
-          </Link>
-          <Link
-            href="/skills-used"
-            className="px-5 py-3 rounded-lg border border-white/15 text-[16px] font-medium text-white/90 hover:bg-white/10 transition-colors"
-          >
-            Next Page
-          </Link>
-        </div>
-      </header>
+      <SiteHeader currentPage="mcps" />
 
       <section className="relative overflow-hidden px-8 py-20 lg:px-[220px] lg:py-[120px]">
         <div className="absolute left-1/2 top-8 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-[#4F9CF9]/25 blur-[110px]"></div>

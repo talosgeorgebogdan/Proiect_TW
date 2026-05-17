@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import ScrollAnimate from './ScrollAnimate';
+import SiteHeader from './SiteHeader';
 
 export const metadata: Metadata = {
   title: 'Overview | MCP Hub',
@@ -243,69 +244,17 @@ function AnimatedIcon({
 export default function McpShowcase() {
   return (
     <div className="min-h-screen bg-[#043873] font-sans text-white overflow-x-hidden scroll-smooth">
-      <header className="flex flex-row justify-between items-center py-4 px-8 lg:px-[220px] bg-[#043873]/80 backdrop-blur-xl sticky top-0 z-50 border-b border-white/10 h-[92px] shadow-lg">
-        <Link href="/" className="flex items-center gap-3 group cursor-pointer">
-          <div className="w-[37px] h-[29px] bg-gradient-to-br from-[#4F9CF9] to-[#FFE492] rounded-sm flex items-center justify-center group-hover:shadow-lg group-hover:shadow-[#4F9CF9]/50 transition-all">
-            <div className="w-4 h-4 bg-[#043873] rounded-sm"></div>
-          </div>
-          <span className="font-bold text-[28px] tracking-tight bg-gradient-to-r from-white to-[#C4DEFD] bg-clip-text text-transparent">
-            MCP Hub
-          </span>
-        </Link>
-
-        <nav className="hidden lg:flex flex-row items-center gap-8 text-[18px] font-medium">
-          <span className="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-4 py-2 text-[#FFE492]">
-            Overview
-          </span>
-          <a href="#what-is-mcp" className="relative group hover:text-[#FFE492] transition-colors">
-            What is MCP?
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FFE492] group-hover:w-full transition-all duration-300"></span>
-          </a>
-          <a href="#mcp-vs-skills" className="relative group hover:text-[#FFE492] transition-colors">
-            MCP vs Skills
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FFE492] group-hover:w-full transition-all duration-300"></span>
-          </a>
-          <a href="#three-primitives" className="relative group hover:text-[#FFE492] transition-colors">
-            Primitives
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FFE492] group-hover:w-full transition-all duration-300"></span>
-          </a>
-          <a href="#skills" className="relative group hover:text-[#FFE492] transition-colors">
-            Skills
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FFE492] group-hover:w-full transition-all duration-300"></span>
-          </a>
-          <a href="#ecosystem" className="relative group hover:text-[#FFE492] transition-colors">
-            Ecosystem
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FFE492] group-hover:w-full transition-all duration-300"></span>
-          </a>
-        </nav>
-
-        <div className="hidden md:flex flex-row items-center gap-4">
-          <Link
-            href="/mcps-used"
-            className="px-5 py-3 rounded-lg border border-white/15 text-[16px] font-medium text-white/90 hover:bg-white/10 transition-colors"
-          >
-            MCPs Used
-          </Link>
-          <Link
-            href="/skills-used"
-            className="px-5 py-3 rounded-lg border border-white/15 text-[16px] font-medium text-white/90 hover:bg-white/10 transition-colors"
-          >
-            Skills Used
-          </Link>
-          <Link
-            href="/codex-in-practice"
-            className="px-5 py-3 rounded-lg border border-white/15 text-[16px] font-medium text-white/90 hover:bg-white/10 transition-colors"
-          >
-            Codex In Practice
-          </Link>
-          <a
-            href="#what-is-mcp"
-            className="px-5 py-3 rounded-lg bg-gradient-to-r from-[#FFE492] to-[#ffd966] text-[16px] font-medium text-[#043873] hover:shadow-lg hover:shadow-[#FFE492]/40 transition-all"
-          >
-            Start Here
-          </a>
-        </div>
-      </header>
+      <SiteHeader
+        currentPage="overview"
+        cta={{ href: '#what-is-mcp', label: 'Start Here' }}
+        sectionLinks={[
+          { href: '#what-is-mcp', label: 'What is MCP?' },
+          { href: '#mcp-vs-skills', label: 'MCP vs Skills' },
+          { href: '#three-primitives', label: 'Primitives' },
+          { href: '#skills', label: 'Skills' },
+          { href: '#ecosystem', label: 'Ecosystem' },
+        ]}
+      />
 
       <section className="flex flex-col xl:flex-row items-center justify-between py-12 px-8 lg:px-[220px] gap-16 min-h-[829px] relative overflow-hidden">
         <ScrollAnimate className="flex flex-col xl:flex-row items-center justify-between gap-16 w-full z-10">
