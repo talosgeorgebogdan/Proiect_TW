@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-type PageKey = 'overview' | 'mcps' | 'skills' | 'codex';
+type PageKey = 'overview' | 'mcps' | 'skills' | 'codex' | 'security';
 
 type SectionLink = {
   href: string;
@@ -17,6 +17,7 @@ const primaryLinks: Array<{ key: PageKey; href: string; label: string }> = [
   { key: 'mcps', href: '/mcps-used', label: 'MCPs Used' },
   { key: 'skills', href: '/skills-used', label: 'Skills Used' },
   { key: 'codex', href: '/codex-in-practice', label: 'Codex In Practice' },
+  { key: 'security', href: '/security-lab', label: 'Security Lab' },
 ];
 
 export default function SiteHeader({
