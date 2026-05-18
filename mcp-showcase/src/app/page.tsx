@@ -544,7 +544,9 @@ export default function McpShowcase() {
             </p>
           </div>
           <div className="flex-1 w-full bg-white p-8 rounded-2xl shadow-xl font-mono text-sm border-2 border-white/20">
-            <div className="text-gray-400 mb-4">// Example: How an AI sees a registered skill</div>
+            <div className="text-gray-400 mb-4">
+              {'// Example: How an AI sees a registered skill'}
+            </div>
             <div className="text-purple-600">const</div>{' '}
             <div className="inline text-blue-600">githubMcp</div>{' '}
             <div className="inline text-gray-800">= {'{'}</div>
