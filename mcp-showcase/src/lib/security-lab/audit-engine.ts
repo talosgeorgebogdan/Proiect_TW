@@ -1,6 +1,8 @@
 import type {
   AuditResult,
   LabPosture,
+  SecurityControlDefinition,
+  SecurityControlId,
   SecurityFinding,
   SecurityScenario,
   Severity,
@@ -12,6 +14,81 @@ const severityWeights: Record<Severity, number> = {
   medium: 12,
   low: 6,
 };
+
+export const securityLabControls: SecurityControlDefinition[] = [
+  {
+    id: 'scope_project_files',
+    label: 'Restrict filesystem scope',
+    shortLabel: 'Project-only files',
+    category: 'Access',
+    description:
+      'Shrink file access to the active project boundary and make secret exclusions explicit.',
+    impact: 'Reduces accidental data exposure and limits secret discovery paths.',
+  },
+  {
+    id: 'scope_project_browser',
+    label: 'Restrict browser scope',
+    shortLabel: 'Project-only browser',
+    category: 'Access',
+    description:
+      'Keep browser automation focused on project-owned pages instead of broader browsing surfaces.',
+    impact: 'Cuts down unrelated navigation risk and narrows the reachable attack surface.',
+  },
+  {
+    id: 'context_secret_redaction',
+    label: 'Redact secrets before prompt assembly',
+    shortLabel: 'Secret redaction',
+    category: 'Context',
+    description:
+      'Scrub token-like values before they can enter model context or downstream summaries.',
+    impact: 'Protects credentials and reduces leakage across prompts, logs, and outputs.',
+  },
+  {
+    id: 'private_note_isolation',
+    label: 'Separate internal notes from execution context',
+    shortLabel: 'Note isolation',
+    category: 'Context',
+    description:
+      'Keep private planning notes out of the operational prompt sent to the model.',
+    impact: 'Improves data minimization and prevents over-sharing of reviewer material.',
+  },
+  {
+    id: 'structured_command_arguments',
+    label: 'Use structured execution arguments',
+    shortLabel: 'Structured arguments',
+    category: 'Execution',
+    description:
+      'Replace raw command text with typed and validated tool arguments.',
+    impact: 'Removes ambiguity at the shell boundary and lowers command injection risk.',
+  },
+  {
+    id: 'command_allowlist',
+    label: 'Allowlist sensitive commands',
+    shortLabel: 'Command allowlist',
+    category: 'Execution',
+    description:
+      'Define a narrow command family set instead of accepting broad execution requests.',
+    impact: 'Limits what the assistant can do even when user intent is unclear or risky.',
+  },
+  {
+    id: 'approval_gate',
+    label: 'Require approval for high-impact actions',
+    shortLabel: 'Approval gate',
+    category: 'Execution',
+    description:
+      'Pause destructive writes, deploys, and other sensitive actions until a human approves them.',
+    impact: 'Adds a strong human-in-the-loop boundary before irreversible steps.',
+  },
+  {
+    id: 'full_audit_logging',
+    label: 'Log all sensitive decisions',
+    shortLabel: 'Full audit logging',
+    category: 'Visibility',
+    description:
+      'Record approvals, denials, retries, and context-safety decisions in one reviewable timeline.',
+    impact: 'Improves accountability, incident response, and presentation clarity.',
+  },
+];
 
 function compareSeverity(left: Severity, right: Severity) {
   return severityWeights[right] - severityWeights[left];
@@ -25,6 +102,51 @@ function buildFinding(
     ...overrides,
     evidence: scenario.summary,
   };
+}
+
+export function applyControls(
+  posture: LabPosture,
+  controlIds: SecurityControlId[]
+): LabPosture {
+  const next = { ...posture };
+
+  for (const controlId of controlIds) {
+    switch (controlId) {
+      case 'scope_project_files':
+        next.filesystemScope = 'project';
+        next.usesSecretDenylist = true;
+        break;
+      case 'scope_project_browser':
+        if (next.browserScope !== 'none') {
+          next.browserScope = 'project';
+        }
+        break;
+      case 'context_secret_redaction':
+        next.promptContainsSecrets = false;
+        next.usesSecretDenylist = true;
+        break;
+      case 'private_note_isolation':
+        next.promptContainsPrivateNotes = false;
+        break;
+      case 'structured_command_arguments':
+        next.commandExecution = 'structured';
+        next.usesStructuredArguments = true;
+        break;
+      case 'command_allowlist':
+        next.usesCommandAllowlist = true;
+        break;
+      case 'approval_gate':
+        next.destructiveActionsRequireApproval = true;
+        next.deploysRequireConfirmation = true;
+        break;
+      case 'full_audit_logging':
+        next.auditCoverage = 'full';
+        next.logsSensitiveActions = true;
+        break;
+    }
+  }
+
+  return next;
 }
 
 function evaluatePosture(scenario: SecurityScenario, posture: LabPosture): SecurityFinding[] {
@@ -226,8 +348,11 @@ function evaluatePosture(scenario: SecurityScenario, posture: LabPosture): Secur
   return findings.sort((left, right) => compareSeverity(left.severity, right.severity));
 }
 
-export function runSecurityAudit(scenario: SecurityScenario): AuditResult {
-  const findings = evaluatePosture(scenario, scenario.posture);
+export function runSecurityAudit(
+  scenario: SecurityScenario,
+  posture: LabPosture = scenario.posture
+): AuditResult {
+  const findings = evaluatePosture(scenario, posture);
   const findingCounts: AuditResult['findingCounts'] = {
     critical: 0,
     high: 0,
